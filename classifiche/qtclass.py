@@ -273,7 +273,8 @@ class MainWin(Ui_DMainWin):
     def CancelSkipper(self):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
         
-        
+    def ExportRanking(self, argdd):
+        print "Export pdf ", argdd
         
 
         
@@ -301,6 +302,8 @@ QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRe
 QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
 QtCore.QObject.connect(ui.B_DeleteRace, QtCore.SIGNAL("clicked()"), ui.CancelRace)
+QtCore.QObject.connect(ui.B_ExportPDF, QtCore.SIGNAL("clicked()"), ui.ExportRanking(argdd))
+
 
 ui.LoadData()
 

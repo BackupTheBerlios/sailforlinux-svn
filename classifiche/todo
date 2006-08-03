@@ -6,8 +6,6 @@
 - export in html
 - translation
 - the columns to exclude must be configurable via config file ?
-- sort the ranking
-- add the shortcut
 - add the validation of the input (points must be a number, skipper must be different)
 - check if the data file exist
 
