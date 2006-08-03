@@ -1,0 +1,24 @@
+[To finish]
+
+
+[Version 1.0]
+- export in pdf
+- export in html
+- translation
+- the columns to exclude must be configurable via config file ?
+- sort the ranking
+- add the shortcut
+- add the validation of the input (points must be a number, skipper must be different)
+- check if the data file exist
+
+
+[Version 2.0]
+- add the possibility to change the configuration options with a gui
+- when a result is modified, the program must ask to save or forget the change.
+- when a regatta ranking is saved, the general ranking must be updated, according with the
+  class
+- redesign the legenda
+- use a db to store the data ?
+- the sorting must consider the value of the total colum as integer
+- add the regatta info (something like metadata)
+- polish the gui
