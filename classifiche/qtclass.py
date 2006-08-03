@@ -27,7 +27,7 @@ class MainWin(Ui_DMainWin):
         self.inputpath = self.exepath+config.get("path","inputpath")
         self.outputpath = self.exepath+config.get("path","outputpath")
         self.DNF = int(config.get("points", "DNF"))
-        self.ColToExclude = 0
+        
         
     def LoadData(self):
         try:
@@ -110,7 +110,6 @@ class MainWin(Ui_DMainWin):
         self.LoadDataFile(file, self.T_GeneralRanking, "Reg.")
 
     def LoadRegattaRanking(self):
-        self.ColToExclude = 0
         current_class = ''
         if self.T_DetailRanking.rowCount() > 1:
             self.ClearRankTable()
@@ -175,7 +174,7 @@ class MainWin(Ui_DMainWin):
                 c = c + 1
             x = x + 1
         Item.resizeColumnsToContents()    
-        self.ColToExclude = 1
+        
     
     def ClearRankTable(self):
         self.ClearTable(self.T_DetailRanking)
@@ -224,7 +223,7 @@ class MainWin(Ui_DMainWin):
         for y in range (0, self.T_DetailRanking.rowCount()):
             skipper = str(self.T_DetailRanking.item(y,0).text())
             races = []
-            for x in range(1, self.T_DetailRanking.columnCount()-self.ColToExclude):
+            for x in range(1, self.T_DetailRanking.columnCount()-1):
                 races.append(str(self.T_DetailRanking.item(y,x).text()))
             riga = "%s="%(skipper)+",".join(races)
             FO.write(riga)
