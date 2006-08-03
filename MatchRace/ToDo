@@ -1,0 +1,11 @@
+[Version 1]
+- i18n -> Italian Tranlation
+- fast save of the result file
+ 
+ 
+[Version 2]
+- add the real time update on the result
+- switch cmake  
+- Add a del button for each skipper
+
+
