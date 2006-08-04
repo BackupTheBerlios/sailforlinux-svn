@@ -1,11 +1,16 @@
+[To finish]
+- porting the skipper list to the QTableWidget
+
+
+
 [Version 1]
 - i18n -> Italian Tranlation
 - fast save of the result file
- 
+- add the real time update on the result 
+- add the delete button for the skipper
+
  
 [Version 2]
-- add the real time update on the result
-- switch cmake  
-- Add a del button for each skipper
+
 
 

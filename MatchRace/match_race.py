@@ -18,17 +18,9 @@ class MainWin(Ui_D_MainWin):
     matchRaceList = []
     skipperList = []
     ROWSKIPPER = 5
+    
     def AddSkipperToList(self):
         skipper =  self.T_SkipperName.text()
-        for pos in range(0,self.L_SkipperList.count()):
-            self.L_SkipperList.setCurrentRow(pos)
-            if skipper == self.L_SkipperList.currentItem().text():
-                QtGui.QMessageBox.warning(None, self.tr("Error"),
-                        self.tr("The skipper name is duplicated.\n"
-                                "Please insert a unique skipper name."),
-                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                        QtGui.QMessageBox.Escape)
-                return        
         if skipper == '':
             QtGui.QMessageBox.warning(None, self.tr("Error"),
                         self.tr("The skipper name is not valid.\n"
@@ -36,13 +28,24 @@ class MainWin(Ui_D_MainWin):
                         QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
                         QtGui.QMessageBox.Escape)
             return
-        self.L_SkipperList.addItem(skipper)
+        y = self.T_SkipperList.rowCount()
+        for pos in range(0,y):
+            PrecSkipper = self.T_SkipperList.item(y,0).text()
+            if skipper == PrecSkipper:
+                QtGui.QMessageBox.warning(None, self.tr("Error"),
+                        self.tr("The skipper name is duplicated.\n"
+                                "Please insert a unique skipper name."),
+                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
+                        QtGui.QMessageBox.Escape)
+                return        
+        
+        self.T_SkipperList.addItem(skipper)
         self.T_SkipperName.setText("")
         
     def GenerateMatchRace(self):
         self.matchRaceList = []
         self.skipperList = []
-        n = self.L_SkipperList.count()
+        n = self.T_SkipperList.count()
         if n == 0:
             QtGui.QMessageBox.warning(None, self.tr("Error"),
                         self.tr("The skipper list is empty.\n"
@@ -53,8 +56,8 @@ class MainWin(Ui_D_MainWin):
         if self.T_MatchRaceList.rowCount() > 1:
             self.ClearMatchRaceList()
         for pos in range(0,n):
-            self.L_SkipperList.setCurrentRow(pos)
-            self.skipperList.append(str(self.L_SkipperList.currentItem().text()))
+            self.T_SkipperList.setCurrentRow(pos)
+            self.skipperList.append(str(self.T_SkipperList.currentItem().text()))
         for n in range(0,len(self.skipperList)):
             for m in range(n+1, len(self.skipperList)):
                 self.matchRaceList.append((self.skipperList[n], self.skipperList[m]))
@@ -143,13 +146,13 @@ class MainWin(Ui_D_MainWin):
         return data
     
     def AddSkipperTable(self):
-        n = self.L_SkipperList.count()
+        n = self.T_SkipperList.count()
         sklist = []
         subsklist = []
         row = 0
         for sk in range(0,n):
-            self.L_SkipperList.setCurrentRow(sk)
-            subsklist.append(str(self.L_SkipperList.currentItem().text()) + " - ")
+            self.T_SkipperList.setCurrentRow(sk)
+            subsklist.append(str(self.T_SkipperList.currentItem().text()) + " - ")
             row = row + 1
             if row == self.ROWSKIPPER:
                 sklist.append(subsklist)
@@ -249,7 +252,7 @@ ui.setupUi(window)
 QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkipperToList)
 QtCore.QObject.connect(ui.B_Generate, QtCore.SIGNAL("clicked()"), ui.GenerateMatchRace)
 QtCore.QObject.connect(ui.B_Save, QtCore.SIGNAL("clicked()"), ui.SaveMatchRaceList)
-QtCore.QObject.connect(ui.b_ClearMatchRace, QtCore.SIGNAL("clicked()"), ui.ClearMatchRaceList)
+QtCore.QObject.connect(ui.B_ClearMatchRace, QtCore.SIGNAL("clicked()"), ui.ClearMatchRaceList)
 
 window.show()
 sys.exit(app.exec_())
