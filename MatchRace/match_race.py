@@ -30,7 +30,7 @@ class MainWin(Ui_D_MainWin):
             return
         y = self.T_SkipperList.rowCount()
         for pos in range(0,y):
-            PrecSkipper = self.T_SkipperList.item(y,0).text()
+            PrecSkipper = self.T_SkipperList.item(pos,0).text()
             if skipper == PrecSkipper:
                 QtGui.QMessageBox.warning(None, self.tr("Error"),
                         self.tr("The skipper name is duplicated.\n"
@@ -38,14 +38,15 @@ class MainWin(Ui_D_MainWin):
                         QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
                         QtGui.QMessageBox.Escape)
                 return        
-        
-        self.T_SkipperList.addItem(skipper)
+        sk = QtGui.QTableWidgetItem(skipper)
+        self.T_SkipperList.insertRow(y)
+        self.T_SkipperList.setItem(y,0,sk)
         self.T_SkipperName.setText("")
         
     def GenerateMatchRace(self):
         self.matchRaceList = []
         self.skipperList = []
-        n = self.T_SkipperList.count()
+        n = self.T_SkipperList.rowCount()
         if n == 0:
             QtGui.QMessageBox.warning(None, self.tr("Error"),
                         self.tr("The skipper list is empty.\n"
@@ -56,8 +57,7 @@ class MainWin(Ui_D_MainWin):
         if self.T_MatchRaceList.rowCount() > 1:
             self.ClearMatchRaceList()
         for pos in range(0,n):
-            self.T_SkipperList.setCurrentRow(pos)
-            self.skipperList.append(str(self.T_SkipperList.currentItem().text()))
+            self.skipperList.append(str(self.T_SkipperList.item(pos,0).text()))
         for n in range(0,len(self.skipperList)):
             for m in range(n+1, len(self.skipperList)):
                 self.matchRaceList.append((self.skipperList[n], self.skipperList[m]))
@@ -239,7 +239,51 @@ class MainWin(Ui_D_MainWin):
             self.T_MatchRaceList.removeRow(i)
         self.T_MatchRaceList.removeRow(0)
         self.T_MatchRaceList.setRowCount = 0
-        self.T_MatchRaceList.setHorizontalHeaderLabels(["Skipper A","Skipper B"])
+        self.T_MatchRaceList.setHorizontalHeaderLabels(["Skipper A","Skipper B","Winner"])
+    
+    def DeleteSkipper(self):
+        self.T_SkipperList.removeRow(self.T_SkipperList.currentRow())
+        
+    def ClearSkipper(self):
+        self.T_SkipperList.clear()
+        self.T_SkipperList.setRowCount = 0
+        rows = self.T_SkipperList.rowCount() 
+        for i in range(rows, 0, -1):
+            self.T_SkipperList.removeRow(i)
+        self.T_SkipperList.removeRow(0)
+        self.T_SkipperList.setRowCount = 0
+        self.T_SkipperList.setHorizontalHeaderLabels(["Skipper","Points","Rank"])
+
+    def CalcRanking(self):
+        SkipperList  = {}
+        rows = self.T_SkipperList.rowCount() 
+        for y in range(0,rows):
+            sk = self.T_SkipperList.item(y,0).text()
+            SkipperList[str(sk)] = 0
+        rows = self.T_MatchRaceList.rowCount()
+        for y in range(0,rows):
+            v = str(self.T_MatchRaceList.item(y,2).text())
+            try:
+                SkipperList[v] = SkipperList[v] + 1
+            except:
+                return
+                # add an error message
+        it = SkipperList.items()
+        it = [(v, k) for (k, v) in it]
+        it.sort()
+        it = [(k, v) for (v, k) in it]
+        it.reverse()
+        self.ClearSkipper()
+        print it
+        y = 0
+        for item in it:
+            self.T_SkipperList.insertRow(y)
+            print item[0], item[1]
+            sk = QtGui.QTableWidgetItem(item[0])
+            self.T_SkipperList.setItem(y,0,sk)
+            sk = QtGui.QTableWidgetItem(item[1])
+            self.T_SkipperList.setItem(y,1,sk)
+            y = y + 1
         
 # End Class        
         
@@ -249,10 +293,16 @@ window = QtGui.QDialog()
 
 ui = MainWin()
 ui.setupUi(window)
+
+# Custom signal connection
 QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkipperToList)
 QtCore.QObject.connect(ui.B_Generate, QtCore.SIGNAL("clicked()"), ui.GenerateMatchRace)
 QtCore.QObject.connect(ui.B_Save, QtCore.SIGNAL("clicked()"), ui.SaveMatchRaceList)
 QtCore.QObject.connect(ui.B_ClearMatchRace, QtCore.SIGNAL("clicked()"), ui.ClearMatchRaceList)
+QtCore.QObject.connect(ui.B_DelSkipper, QtCore.SIGNAL("clicked()"), ui.DeleteSkipper)
+QtCore.QObject.connect(ui.B_ClearSkipper, QtCore.SIGNAL("clicked()"), ui.ClearSkipper)
+QtCore.QObject.connect(ui.B_Ranking, QtCore.SIGNAL("clicked()"), ui.CalcRanking)
+
 
 window.show()
 sys.exit(app.exec_())

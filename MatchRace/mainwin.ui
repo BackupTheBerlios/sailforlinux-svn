@@ -8,7 +8,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>718</width>
+    <width>868</width>
     <height>578</height>
    </rect>
   </property>
@@ -62,7 +62,7 @@
           </column>
           <column>
            <property name="text" >
-            <string>Rank</string>
+            <string>Points</string>
            </property>
           </column>
          </widget>
@@ -157,27 +157,27 @@
           <property name="alignment" >
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
           </property>
-          <layout class="QVBoxLayout" >
+          <layout class="QGridLayout" >
            <property name="margin" >
             <number>9</number>
            </property>
            <property name="spacing" >
             <number>6</number>
            </property>
-           <item>
-            <widget class="QRadioButton" name="R_Live" >
-             <property name="text" >
-              <string>Live</string>
-             </property>
-            </widget>
-           </item>
-           <item>
+           <item row="1" column="0" >
             <widget class="QRadioButton" name="R_OffLine" >
              <property name="text" >
               <string>OffLine</string>
              </property>
              <property name="checked" >
               <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" >
+            <widget class="QRadioButton" name="R_Live" >
+             <property name="text" >
+              <string>Live</string>
              </property>
             </widget>
            </item>

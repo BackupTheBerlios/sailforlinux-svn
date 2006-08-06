@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Fri Aug 04 17:44:39 2006
+# Created: Fri Aug  4 23:40:01 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_D_MainWin(object):
     def setupUi(self, D_MainWin):
         D_MainWin.setObjectName("D_MainWin")
-        D_MainWin.resize(QtCore.QSize(QtCore.QRect(0,0,718,578).size()).expandedTo(D_MainWin.minimumSizeHint()))
+        D_MainWin.resize(QtCore.QSize(QtCore.QRect(0,0,868,578).size()).expandedTo(D_MainWin.minimumSizeHint()))
 
         font = QtGui.QFont(D_MainWin.font())
         font.setFamily("Sans Serif")
@@ -95,19 +95,19 @@ class Ui_D_MainWin(object):
         self.groupBox_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.groupBox_3.setObjectName("groupBox_3")
 
-        self.vboxlayout3 = QtGui.QVBoxLayout(self.groupBox_3)
-        self.vboxlayout3.setMargin(9)
-        self.vboxlayout3.setSpacing(6)
-        self.vboxlayout3.setObjectName("vboxlayout3")
-
-        self.R_Live = QtGui.QRadioButton(self.groupBox_3)
-        self.R_Live.setObjectName("R_Live")
-        self.vboxlayout3.addWidget(self.R_Live)
+        self.gridlayout = QtGui.QGridLayout(self.groupBox_3)
+        self.gridlayout.setMargin(9)
+        self.gridlayout.setSpacing(6)
+        self.gridlayout.setObjectName("gridlayout")
 
         self.R_OffLine = QtGui.QRadioButton(self.groupBox_3)
         self.R_OffLine.setChecked(True)
         self.R_OffLine.setObjectName("R_OffLine")
-        self.vboxlayout3.addWidget(self.R_OffLine)
+        self.gridlayout.addWidget(self.R_OffLine,1,0,1,1)
+
+        self.R_Live = QtGui.QRadioButton(self.groupBox_3)
+        self.R_Live.setObjectName("R_Live")
+        self.gridlayout.addWidget(self.R_Live,0,0,1,1)
         self.vboxlayout2.addWidget(self.groupBox_3)
 
         self.T_MatchRaceList = QtGui.QTableWidget(self.groupBox_2)
@@ -131,10 +131,10 @@ class Ui_D_MainWin(object):
         self.T_MatchRaceList.setObjectName("T_MatchRaceList")
         self.vboxlayout2.addWidget(self.T_MatchRaceList)
 
-        self.vboxlayout4 = QtGui.QVBoxLayout()
-        self.vboxlayout4.setMargin(0)
-        self.vboxlayout4.setSpacing(6)
-        self.vboxlayout4.setObjectName("vboxlayout4")
+        self.vboxlayout3 = QtGui.QVBoxLayout()
+        self.vboxlayout3.setMargin(0)
+        self.vboxlayout3.setSpacing(6)
+        self.vboxlayout3.setObjectName("vboxlayout3")
 
         self.hboxlayout3 = QtGui.QHBoxLayout()
         self.hboxlayout3.setMargin(0)
@@ -148,7 +148,7 @@ class Ui_D_MainWin(object):
         self.B_Ranking = QtGui.QPushButton(self.groupBox_2)
         self.B_Ranking.setObjectName("B_Ranking")
         self.hboxlayout3.addWidget(self.B_Ranking)
-        self.vboxlayout4.addLayout(self.hboxlayout3)
+        self.vboxlayout3.addLayout(self.hboxlayout3)
 
         self.hboxlayout4 = QtGui.QHBoxLayout()
         self.hboxlayout4.setMargin(0)
@@ -162,8 +162,8 @@ class Ui_D_MainWin(object):
         self.B_Save = QtGui.QPushButton(self.groupBox_2)
         self.B_Save.setObjectName("B_Save")
         self.hboxlayout4.addWidget(self.B_Save)
-        self.vboxlayout4.addLayout(self.hboxlayout4)
-        self.vboxlayout2.addLayout(self.vboxlayout4)
+        self.vboxlayout3.addLayout(self.hboxlayout4)
+        self.vboxlayout2.addLayout(self.vboxlayout3)
         self.hboxlayout.addWidget(self.groupBox_2)
         self.vboxlayout.addLayout(self.hboxlayout)
 
@@ -205,7 +205,7 @@ class Ui_D_MainWin(object):
         self.T_SkipperList.setHorizontalHeaderItem(0,headerItem)
 
         headerItem1 = QtGui.QTableWidgetItem()
-        headerItem1.setText(self.tr("Rank"))
+        headerItem1.setText(self.tr("Points"))
         self.T_SkipperList.setHorizontalHeaderItem(1,headerItem1)
         self.B_AddSkipper.setText(self.tr("Add skipper"))
         self.B_DelSkipper.setText(self.tr("Delete skipper"))
@@ -214,8 +214,8 @@ class Ui_D_MainWin(object):
         self.B_ClearSkipper.setText(self.tr("Clear"))
         self.groupBox_2.setTitle(self.tr("Match Race"))
         self.groupBox_3.setTitle(self.tr("Options"))
-        self.R_Live.setText(self.tr("Live"))
         self.R_OffLine.setText(self.tr("OffLine"))
+        self.R_Live.setText(self.tr("Live"))
         self.T_MatchRaceList.setColumnCount(3)
         self.T_MatchRaceList.clear()
         self.T_MatchRaceList.setColumnCount(3)
