@@ -24,7 +24,7 @@
    </font>
   </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>MatchRace</string>
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >

@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.4
 
-import sys,copy, random, re
+import sys,copy, random, re, os
 from reportlab.platypus import *
 from reportlab.lib.styles import PropertySet, getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
@@ -22,21 +22,13 @@ class MainWin(Ui_D_MainWin):
     def AddSkipperToList(self):
         skipper =  self.T_SkipperName.text()
         if skipper == '':
-            QtGui.QMessageBox.warning(None, self.tr("Error"),
-                        self.tr("The skipper name is not valid.\n"
-                                "Please insert a valid skipper name."),
-                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                        QtGui.QMessageBox.Escape)
+            self.ShowWarning("The skipper name is not valid.\n Please insert a valid skipper name.")
             return
         y = self.T_SkipperList.rowCount()
         for pos in range(0,y):
             PrecSkipper = self.T_SkipperList.item(pos,0).text()
             if skipper == PrecSkipper:
-                QtGui.QMessageBox.warning(None, self.tr("Error"),
-                        self.tr("The skipper name is duplicated.\n"
-                                "Please insert a unique skipper name."),
-                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                        QtGui.QMessageBox.Escape)
+                self.ShowWarning("The skipper name is duplicated.\n Please insert a unique skipper name.")
                 return        
         sk = QtGui.QTableWidgetItem(skipper)
         self.T_SkipperList.insertRow(y)
@@ -48,11 +40,7 @@ class MainWin(Ui_D_MainWin):
         self.skipperList = []
         n = self.T_SkipperList.rowCount()
         if n == 0:
-            QtGui.QMessageBox.warning(None, self.tr("Error"),
-                        self.tr("The skipper list is empty.\n"
-                                "Please insert some skipper."),
-                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                        QtGui.QMessageBox.Escape)
+            self.ShowWarning("The skipper list is empty.\n Please insert some skipper.")
             return
         if self.T_MatchRaceList.rowCount() > 1:
             self.ClearMatchRaceList()
@@ -168,10 +156,7 @@ class MainWin(Ui_D_MainWin):
     def SaveMatchRaceList(self):
         mr = self.T_MatchRaceList.rowCount()
         if mr == 0:
-            QtGui.QMessageBox.warning(None, self.tr("Error"),
-                        self.tr("Nothing to save.\n"),
-                        QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                        QtGui.QMessageBox.Escape)
+            self.ShowWarning("Nothing to save\n")
             return
         mrlist = self.BuildMatchRaceList()
         fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
@@ -262,29 +247,55 @@ class MainWin(Ui_D_MainWin):
             SkipperList[str(sk)] = 0
         rows = self.T_MatchRaceList.rowCount()
         for y in range(0,rows):
-            v = str(self.T_MatchRaceList.item(y,2).text())
             try:
+                v = str(self.T_MatchRaceList.item(y,2).text())
                 SkipperList[v] = SkipperList[v] + 1
             except:
+                msg = "Race %d had not a winner"%(y+1)
+                self.ShowError(msg)
                 return
-                # add an error message
+                
         it = SkipperList.items()
         it = [(v, k) for (k, v) in it]
         it.sort()
         it = [(k, v) for (v, k) in it]
         it.reverse()
         self.ClearSkipper()
-        print it
         y = 0
-        for item in it:
+        
+        for item in it:            
             self.T_SkipperList.insertRow(y)
-            print item[0], item[1]
             sk = QtGui.QTableWidgetItem(item[0])
             self.T_SkipperList.setItem(y,0,sk)
-            sk = QtGui.QTableWidgetItem(item[1])
+            sk = QtGui.QTableWidgetItem(str(item[1]))
+            sk.setTextAlignment(QtCore.Qt.AlignCenter)
             self.T_SkipperList.setItem(y,1,sk)
             y = y + 1
+
+    def ShowWarning(self, msg):
+        QtGui.QMessageBox.warning(None, self.tr("Error"),
+            self.tr(msg),
+            QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
+            QtGui.QMessageBox.Escape)
+
         
+    def ShowError(self, msg):
+        QtGui.QMessageBox.critical(None, self.tr("Error"),
+            self.tr(msg),
+            QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
+            QtGui.QMessageBox.Escape)
+            
+            
+            
+    def UpdateFileName(self):
+        txt = self.E_FileName.text()
+        d = os.getcwd()
+        s = os.sep
+        fname = d+s+txt
+        if txt[-4:] != 'pdf':
+            fname = fname+'.pdf'
+        self.E_FileName.setText(fname)
+            
 # End Class        
         
         
@@ -302,7 +313,7 @@ QtCore.QObject.connect(ui.B_ClearMatchRace, QtCore.SIGNAL("clicked()"), ui.Clear
 QtCore.QObject.connect(ui.B_DelSkipper, QtCore.SIGNAL("clicked()"), ui.DeleteSkipper)
 QtCore.QObject.connect(ui.B_ClearSkipper, QtCore.SIGNAL("clicked()"), ui.ClearSkipper)
 QtCore.QObject.connect(ui.B_Ranking, QtCore.SIGNAL("clicked()"), ui.CalcRanking)
-
+QtCore.QObject.connect(ui.E_FileName, QtCore.SIGNAL("lostFocus()"), ui.UpdateFileName)
 
 window.show()
 sys.exit(app.exec_())

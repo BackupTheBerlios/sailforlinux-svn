@@ -1,10 +1,14 @@
 [To finish]
+- save of the file with the direct entry intead of the file dialog
+
 
 [Version 1]
 - i18n -> Italian Tranlation
 - fast save of the result file
 - add the real time update on the result 
 - add the delete button for the skipper
+- add the data directory for output
+- add the configuration file
 
  
 [Version 2]

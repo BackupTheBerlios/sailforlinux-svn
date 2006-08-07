@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Fri Aug  4 23:40:01 2006
+# Created: Mon Aug 07 15:59:43 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -194,7 +194,7 @@ class Ui_D_MainWin(object):
         return QtGui.QApplication.translate("D_MainWin", string, None, QtGui.QApplication.UnicodeUTF8)
 
     def retranslateUi(self, D_MainWin):
-        D_MainWin.setWindowTitle(self.tr("Dialog"))
+        D_MainWin.setWindowTitle(self.tr("MatchRace"))
         self.groupBox.setTitle(self.tr("Skipper"))
         self.T_SkipperList.clear()
         self.T_SkipperList.setColumnCount(2)
