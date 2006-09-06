@@ -176,6 +176,10 @@ class MainWin(Ui_D_MainWin):
         ext = str(fileName[-4:])
         if ext.upper() != ".pdf".upper():
             fileName = fileName+".pdf"
+        wkf = re.split(os.sep, str(fileName))
+        f = wkf[-1:]
+        self.L_Status.setText("File %s saved"%f[0])
+        self.E_FileName.setText("")
         doc = SimpleDocTemplate(fileName, pagesize=landscape(A4), leftMargin=units.mm*20, topMargin=units.mm*10, bottomMargin=units.mm*10)
         styleSheet = getSampleStyleSheet()
         styNormal = styleSheet['Normal']
@@ -321,8 +325,6 @@ class MainWin(Ui_D_MainWin):
         self.E_FileName.setText(fname)
             
         
-    def SetWinner(self,x,y):
-        print "ciao", x, y
         
         
 # End Class        

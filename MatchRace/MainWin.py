@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Wed Sep 06 15:47:26 2006
+# Created: Wed Sep  6 23:10:34 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -145,6 +145,10 @@ class Ui_D_MainWin(object):
         self.hboxlayout4.addWidget(self.B_Save)
         self.vboxlayout3.addLayout(self.hboxlayout4)
         self.vboxlayout2.addLayout(self.vboxlayout3)
+
+        self.L_Status = QtGui.QLabel(self.groupBox_2)
+        self.L_Status.setObjectName("L_Status")
+        self.vboxlayout2.addWidget(self.L_Status)
         self.hboxlayout.addWidget(self.groupBox_2)
         self.vboxlayout.addLayout(self.hboxlayout)
 
