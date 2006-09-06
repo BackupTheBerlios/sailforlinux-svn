@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Mon Aug 07 15:59:43 2006
+# Created: Wed Sep 06 15:47:26 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -90,25 +90,6 @@ class Ui_D_MainWin(object):
         self.vboxlayout2.setMargin(9)
         self.vboxlayout2.setSpacing(6)
         self.vboxlayout2.setObjectName("vboxlayout2")
-
-        self.groupBox_3 = QtGui.QGroupBox(self.groupBox_2)
-        self.groupBox_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-        self.groupBox_3.setObjectName("groupBox_3")
-
-        self.gridlayout = QtGui.QGridLayout(self.groupBox_3)
-        self.gridlayout.setMargin(9)
-        self.gridlayout.setSpacing(6)
-        self.gridlayout.setObjectName("gridlayout")
-
-        self.R_OffLine = QtGui.QRadioButton(self.groupBox_3)
-        self.R_OffLine.setChecked(True)
-        self.R_OffLine.setObjectName("R_OffLine")
-        self.gridlayout.addWidget(self.R_OffLine,1,0,1,1)
-
-        self.R_Live = QtGui.QRadioButton(self.groupBox_3)
-        self.R_Live.setObjectName("R_Live")
-        self.gridlayout.addWidget(self.R_Live,0,0,1,1)
-        self.vboxlayout2.addWidget(self.groupBox_3)
 
         self.T_MatchRaceList = QtGui.QTableWidget(self.groupBox_2)
 
@@ -213,9 +194,6 @@ class Ui_D_MainWin(object):
         self.B_Generate.setShortcut(self.tr("Ctrl+G"))
         self.B_ClearSkipper.setText(self.tr("Clear"))
         self.groupBox_2.setTitle(self.tr("Match Race"))
-        self.groupBox_3.setTitle(self.tr("Options"))
-        self.R_OffLine.setText(self.tr("OffLine"))
-        self.R_Live.setText(self.tr("Live"))
         self.T_MatchRaceList.setColumnCount(3)
         self.T_MatchRaceList.clear()
         self.T_MatchRaceList.setColumnCount(3)

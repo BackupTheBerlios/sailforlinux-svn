@@ -84,16 +84,18 @@ class MainWin(Ui_D_MainWin):
         y = 0
         match_a = {}
         match_b = {}
+        match_c = {}
         for matchrace in defMatchRaceList:
             self.T_MatchRaceList.insertRow(self.T_MatchRaceList.rowCount())        
             match_a[y] = QtGui.QTableWidgetItem(matchrace[0])
             match_b[y] = QtGui.QTableWidgetItem(matchrace[1])
-            if self.R_Live.isChecked():
-                print "live"
-            match_a[y].setTextAlignment(QtCore.Qt.AlignHCenter)
-            match_b[y].setTextAlignment(QtCore.Qt.AlignHCenter)
+            match_c[y] = QtGui.QTableWidgetItem("")
+            match_a[y].setTextAlignment(QtCore.Qt.AlignCenter)
+            match_b[y].setTextAlignment(QtCore.Qt.AlignCenter)
+            match_c[y].setTextAlignment(QtCore.Qt.AlignCenter)
             self.T_MatchRaceList.setItem(y,0,match_a[y])
             self.T_MatchRaceList.setItem(y,1,match_b[y])
+            self.T_MatchRaceList.setItem(y,2,match_c[y])
             y = y + 1
             
     def BuildMatchRaceList(self):
@@ -107,20 +109,22 @@ class MainWin(Ui_D_MainWin):
         for c in range(0,mr,incr):
             sa1 = str(self.T_MatchRaceList.item(c,0).text())
             sb2 = str(self.T_MatchRaceList.item(c,1).text())
+            sb3 = str(self.T_MatchRaceList.item(c,2).text())
             if mr > 13:
                 d = c + 1
                 try:
                     sa3 = str(self.T_MatchRaceList.item(d,0).text())
-                    sb4 = str(self.T_MatchRaceList.item(d,1).text())                
+                    sb4 = str(self.T_MatchRaceList.item(d,1).text())      
+                    sb5 = str(self.T_MatchRaceList.item(d,2).text())      
                 except:
                     sa3 = ""
                     sb4 = ""
-            if self.R_OffLine.isChecked():
-                sa1 = sa1
-                sb2 = sb2
-                if mr > 13:
-                    sa3 = sa3
-                    sb4 = sb4
+#            if self.R_OffLine.isChecked():
+#                sa1 = sa1
+#                sb2 = sb2
+#                if mr > 13:
+#                    sa3 = sa3
+#                    sb4 = sb4
                 
             p = c + 1
             pc1 = "Reg. %3d"%p
@@ -128,19 +132,19 @@ class MainWin(Ui_D_MainWin):
                 p = c + 2
                 pc2 = "Reg. %3d"%p
             if mr > 13:
-                data.append([pc1, sa1, sb2, "", "",pc2,sa3,sb4,""])
+                data.append([pc1, sa1, sb2, sb3, "",pc2,sa3,sb4,sb5])
             else:
                 data.append([pc1, sa1, sb2, ""])
         return data
     
     def AddSkipperTable(self):
-        n = self.T_SkipperList.count()
+        n = self.T_SkipperList.rowCount()
         sklist = []
         subsklist = []
         row = 0
         for sk in range(0,n):
-            self.T_SkipperList.setCurrentRow(sk)
-            subsklist.append(str(self.T_SkipperList.currentItem().text()) + " - ")
+            skipper = sk = self.T_SkipperList.item(sk,0).text()
+            subsklist.append(skipper + " - ")
             row = row + 1
             if row == self.ROWSKIPPER:
                 sklist.append(subsklist)
@@ -159,11 +163,14 @@ class MainWin(Ui_D_MainWin):
             self.ShowWarning("Nothing to save\n")
             return
         mrlist = self.BuildMatchRaceList()
-        fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
-                                                        ".",
-                                                        "*.pdf",
-                                                        "*.pdf"
-                                                        )
+        if str(self.E_FileName.text()) == '':
+            fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
+                                                            ".",
+                                                            "*.pdf",
+                                                            "*.pdf"
+                                                            )
+        else:
+            fileName = self.E_FileName.text()
         if fileName == '':
             return
         ext = str(fileName[-4:])
@@ -179,22 +186,22 @@ class MainWin(Ui_D_MainWin):
         # first the columns, after the rows
         t = Table(mrlist, colwidth, rowheight)
         flowables = []
-        if self.R_OffLine.isChecked():
-            psk = Paragraph("""Skipper List\n\n""", styleSheet['Heading1'])
-            flowables.append(psk)
-            skipperTable = self.AddSkipperTable()
-            rows = len(skipperTable)
-            cols = len(skipperTable[0])
-            skt = Table(skipperTable, units.mm*55, units.mm*10,)
-            flowables.append(skt)
-            SK_GRID_STYLE = TableStyle(
-                    [('GRID', (0,0), (cols,rows), 0.25, colors.black),
-                    ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-                    ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                    ('SIZE',(0,0),(-1,-1),units.mm*7),
-                    ]
-                )
-            skt.setStyle(SK_GRID_STYLE)
+#        if self.R_OffLine.isChecked():
+        psk = Paragraph("""Skipper List\n\n""", styleSheet['Heading1'])
+        flowables.append(psk)
+        skipperTable = self.AddSkipperTable()
+        rows = len(skipperTable)
+        cols = len(skipperTable[0])
+        skt = Table(skipperTable, units.mm*55, units.mm*10,)
+        flowables.append(skt)
+        SK_GRID_STYLE = TableStyle(
+                [('GRID', (0,0), (cols,rows), 0.25, colors.black),
+                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+                ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                ('SIZE',(0,0),(-1,-1),units.mm*7),
+                ]
+            )
+        skt.setStyle(SK_GRID_STYLE)
             
         rowst = len(mrlist)
         colst = len(mrlist[0])
@@ -254,8 +261,25 @@ class MainWin(Ui_D_MainWin):
                 msg = "Race %d had not a winner"%(y+1)
                 self.ShowError(msg)
                 return
-                
-        it = SkipperList.items()
+        self.SortRanking(SkipperList)
+    
+    def CalcPartialRanking(self, x, y):
+        SkipperList  = {}
+        rows = self.T_SkipperList.rowCount() 
+        for y in range(0,rows):
+            sk = self.T_SkipperList.item(y,0).text()
+            SkipperList[str(sk)] = 0
+        rows = self.T_MatchRaceList.rowCount()
+        for y in range(0,rows):
+            try:
+                v = str(self.T_MatchRaceList.item(y,2).text())
+                SkipperList[v] = SkipperList[v] + 1
+            except:
+                pass
+        self.SortRanking(SkipperList)
+            
+    def SortRanking(self, rank):
+        it = rank.items()
         it = [(v, k) for (k, v) in it]
         it.sort()
         it = [(k, v) for (v, k) in it]
@@ -296,6 +320,11 @@ class MainWin(Ui_D_MainWin):
             fname = fname+'.pdf'
         self.E_FileName.setText(fname)
             
+        
+    def SetWinner(self,x,y):
+        print "ciao", x, y
+        
+        
 # End Class        
         
         
@@ -314,6 +343,8 @@ QtCore.QObject.connect(ui.B_DelSkipper, QtCore.SIGNAL("clicked()"), ui.DeleteSki
 QtCore.QObject.connect(ui.B_ClearSkipper, QtCore.SIGNAL("clicked()"), ui.ClearSkipper)
 QtCore.QObject.connect(ui.B_Ranking, QtCore.SIGNAL("clicked()"), ui.CalcRanking)
 QtCore.QObject.connect(ui.E_FileName, QtCore.SIGNAL("lostFocus()"), ui.UpdateFileName)
+QtCore.QObject.connect(ui.T_MatchRaceList, QtCore.SIGNAL("cellChanged(int,int)"), ui.CalcPartialRanking)
+
 
 window.show()
 sys.exit(app.exec_())
