@@ -268,6 +268,16 @@ class MainWin(Ui_D_MainWin):
         self.SortRanking(SkipperList)
     
     def CalcPartialRanking(self, x, y):
+#         try:
+#             sk1 = str(self.T_MatchRaceList.item(y,0).text())
+#             sk2 = str(self.T_MatchRaceList.item(y,1).text())
+#             skv = str(self.T_MatchRaceList.item(y,2).text())
+#             if skv != sk1 and skv != sk2 and skv != '':
+#                 msg = "The skipper %s is not in the current match"%(skv)
+#                 self.ShowWarning(msg)
+#                 return
+#         except:
+#             pass            
         SkipperList  = {}
         rows = self.T_SkipperList.rowCount() 
         for y in range(0,rows):
