@@ -273,8 +273,19 @@ class MainWin(Ui_DMainWin):
     def CancelSkipper(self):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
         
-    def ExportRanking(self, argdd):
-        print "Export pdf ", argdd
+    def ExportRanking(self):
+        #if self.L_Regattas.currentItem() == None:
+        #    self.ShowWarningDialog("Please select a regatta.\n")
+        #    return
+        fileType = QtCore.QString("html *.html")
+
+        fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
+                                                            ".",
+                                                            "html (*.html);;pdf (*.pdf);;All Supported Files (*.pdf *.html)",
+                                                            fileType
+                                                            )
+        print "Export file as ", fileName, fileType
+        
         
 
         
@@ -302,7 +313,7 @@ QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRe
 QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
 QtCore.QObject.connect(ui.B_DeleteRace, QtCore.SIGNAL("clicked()"), ui.CancelRace)
-QtCore.QObject.connect(ui.B_ExportPDF, QtCore.SIGNAL("clicked()"), ui.ExportRanking(argdd))
+QtCore.QObject.connect(ui.B_ExportPDF, QtCore.SIGNAL("clicked()"), ui.ExportRanking)
 
 
 ui.LoadData()

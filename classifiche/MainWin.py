@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Thu Aug  3 22:20:49 2006
+# Created: Mon Sep 11 17:27:20 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -212,6 +212,9 @@ class Ui_DMainWin(object):
         self.hboxlayout6.setSpacing(6)
         self.hboxlayout6.setObjectName("hboxlayout6")
 
+        spacerItem5 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout6.addItem(spacerItem5)
+
         self.B_SaveData = QtGui.QPushButton(self.groupBox_4)
         self.B_SaveData.setObjectName("B_SaveData")
         self.hboxlayout6.addWidget(self.B_SaveData)
@@ -220,9 +223,8 @@ class Ui_DMainWin(object):
         self.B_ExportPDF.setObjectName("B_ExportPDF")
         self.hboxlayout6.addWidget(self.B_ExportPDF)
 
-        self.B_ExportHTML = QtGui.QPushButton(self.groupBox_4)
-        self.B_ExportHTML.setObjectName("B_ExportHTML")
-        self.hboxlayout6.addWidget(self.B_ExportHTML)
+        spacerItem6 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout6.addItem(spacerItem6)
         self.vboxlayout6.addLayout(self.hboxlayout6)
         self.hboxlayout3.addWidget(self.groupBox_4)
         self.vboxlayout.addLayout(self.hboxlayout3)
@@ -238,16 +240,16 @@ class Ui_DMainWin(object):
         self.vboxlayout9.setSpacing(6)
         self.vboxlayout9.setObjectName("vboxlayout9")
 
-        spacerItem5 = QtGui.QSpacerItem(20,31,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
-        self.vboxlayout9.addItem(spacerItem5)
+        spacerItem7 = QtGui.QSpacerItem(20,31,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
+        self.vboxlayout9.addItem(spacerItem7)
 
         self.okButton = QtGui.QPushButton(DMainWin)
         self.okButton.setObjectName("okButton")
         self.vboxlayout9.addWidget(self.okButton)
         self.vboxlayout8.addLayout(self.vboxlayout9)
 
-        spacerItem6 = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.vboxlayout8.addItem(spacerItem6)
+        spacerItem8 = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.vboxlayout8.addItem(spacerItem8)
         self.hboxlayout.addLayout(self.vboxlayout8)
 
         self.retranslateUi(DMainWin)
@@ -291,6 +293,5 @@ class Ui_DMainWin(object):
         self.B_CalcRanking.setText(self.tr("Update Rank"))
         self.B_Legenda.setText(self.tr("Legenda"))
         self.B_SaveData.setText(self.tr("Save Data"))
-        self.B_ExportPDF.setText(self.tr("Export as PDF"))
-        self.B_ExportHTML.setText(self.tr("Export as HTML"))
+        self.B_ExportPDF.setText(self.tr("Export Ranking"))
         self.okButton.setText(self.tr("Quit"))

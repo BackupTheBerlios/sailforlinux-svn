@@ -396,6 +396,19 @@
              <number>6</number>
             </property>
             <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QPushButton" name="B_SaveData" >
               <property name="text" >
                <string>Save Data</string>
@@ -405,16 +418,22 @@
             <item>
              <widget class="QPushButton" name="B_ExportPDF" >
               <property name="text" >
-               <string>Export as PDF</string>
+               <string>Export Ranking</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="B_ExportHTML" >
-              <property name="text" >
-               <string>Export as HTML</string>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
               </property>
-             </widget>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
