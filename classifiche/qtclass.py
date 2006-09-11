@@ -13,6 +13,8 @@ from RegattaDialog import Ui_RegattaDialog
 from LegendaDialog import Ui_LegendaDialog
 from export import Export
 
+
+
 class MainWin(Ui_DMainWin):
     
     inputpath = ''
@@ -284,7 +286,19 @@ class MainWin(Ui_DMainWin):
                                                             "html (*.html);;pdf (*.pdf);;All Supported Files (*.pdf *.html)",
                                                             fileType
                                                             )
-        print "Export file as ", fileName, fileType
+        FileExt = ".html"
+        ext = str(fileType).split(" ")
+        ExportEngine = Export()
+        if ext[0] == "html":
+            FileExt = ".html"
+            fname = fileName+FileExt
+            ExportEngine.ExportAsHTML(self.T_DetailRanking, fname)
+        if ext[0] == "pdf":
+            FileExt = ".pdf"
+            ExportEngine.ExportAsPDF(self.T_DetailRanking, fileName+FileExt)
+        
+        
+        
         
         
 
