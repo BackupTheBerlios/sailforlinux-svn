@@ -6,16 +6,18 @@ from reportlab.platypus import *
 from reportlab.lib.styles import PropertySet, getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.platypus.paragraph import Paragraph
+from reportlab.lib.pagesizes import landscape, A4
 #from reportlab.lib.utils import fp_str
 #from reportlab.pdfbase import pdfmetrics
 from reportlab.platypus.flowables import PageBreak
+from reportlab.lib import units
 
 class Export:
     def __init__(self):
         pass
     
     def ExportAsPDF(self, DataGrid, FileName):
-        doc = SimpleDocTemplate(FileName)
+        doc = SimpleDocTemplate(FileName, pagesize=landscape(A4), leftMargin=units.mm*20, topMargin=units.mm*10, bottomMargin=units.mm*10)
         styleSheet = getSampleStyleSheet()
         styNormal = styleSheet['Normal']
         styNormal.spaceBefore = 6
@@ -36,22 +38,26 @@ class Export:
                 subdata.append(txt)
             data.append(subdata)
         cw = []
-        for c in range(0,cols):
+        cw.append(100)
+        for c in range(0,cols-1):
             cw.append(50)    
         rowheight= 100
         colwidth = 30
         #prima le colonne, poi le righe
         t = Table(data, cw, colwidth)
+        # cols deve essere diminuito di uno, non so perche'.
+        cols -= 1
         GRID_STYLE = TableStyle(
-            [('GRID', (0,0), (3,0), 0.75, colors.black),
-            ('GRID', (0,1), (4,4), 0.25, colors.black),
+            [('GRID', (0,0), (cols,rows), 0.75, colors.black),
+            ('GRID', (0,1), (cols,rows), 0.25, colors.black),
             ('ALIGN', (0,0), (-1,-1), 'CENTER'),
             ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-            ('SIZE',(0,0),(1,2),16),
+            ('SIZE',(0,0),(cols,0),16),
+            ('SIZE',(0,1),(cols,rows),14)
             ]
             )
         t.setStyle(GRID_STYLE)
-        p = Paragraph("""Basics about column sizing and cell contents\n""", styleSheet['Heading1'])
+        p = Paragraph("""Classifica regata\n""", styleSheet['Heading1'])
         flowables = [p,t]
         
         doc.build (flowables)

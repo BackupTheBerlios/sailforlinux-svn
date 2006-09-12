@@ -276,9 +276,11 @@ class MainWin(Ui_DMainWin):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
         
     def ExportRanking(self):
-        #if self.L_Regattas.currentItem() == None:
-        #    self.ShowWarningDialog("Please select a regatta.\n")
-        #    return
+        if self.L_Regattas.currentItem() == None:
+            self.ShowWarningDialog("Please select a regatta.\n")
+            return
+        regatta = L_Regattas.currentItem().text()
+        print regatta
         fileType = QtCore.QString("html *.html")
 
         fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
@@ -295,7 +297,7 @@ class MainWin(Ui_DMainWin):
             ExportEngine.ExportAsHTML(self.T_DetailRanking, fname)
         if ext[0] == "pdf":
             FileExt = ".pdf"
-            ExportEngine.ExportAsPDF(self.T_DetailRanking, fileName+FileExt)
+            ExportEngine.ExportAsPDF(self.T_DetailRanking, fname)
         
         
         
