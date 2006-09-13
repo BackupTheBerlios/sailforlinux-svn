@@ -16,7 +16,7 @@ class Export:
     def __init__(self):
         pass
     
-    def ExportAsPDF(self, DataGrid, FileName):
+    def ExportAsPDF(self, DataGrid, FileName, Regatta):
         doc = SimpleDocTemplate(FileName, pagesize=landscape(A4), leftMargin=units.mm*20, topMargin=units.mm*10, bottomMargin=units.mm*10)
         styleSheet = getSampleStyleSheet()
         styNormal = styleSheet['Normal']
@@ -50,20 +50,23 @@ class Export:
         GRID_STYLE = TableStyle(
             [('GRID', (0,0), (cols,rows), 0.75, colors.black),
             ('GRID', (0,1), (cols,rows), 0.25, colors.black),
-            ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+            ('ALIGN', (0,0), (1,-1), 'CENTER'),
+            ('ALIGN', (1,0), (-1,-1), 'CENTER'),
             ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
             ('SIZE',(0,0),(cols,0),16),
             ('SIZE',(0,1),(cols,rows),14)
             ]
             )
         t.setStyle(GRID_STYLE)
-        p = Paragraph("""Classifica regata\n""", styleSheet['Heading1'])
+        reg = Regatta.split(' ')
+        classe = reg[-1]
+        p = Paragraph("""Classifica %s classe %s\n"""%(reg[0], reg[1]), styleSheet['Heading1'])
         flowables = [p,t]
         
         doc.build (flowables)
                             
         
-    def ExportAsHTML(self, DataGrid, FileName):     
+    def ExportAsHTML(self, DataGrid, FileName, Regatta):     
         print FileName
         print type(DataGrid)
  

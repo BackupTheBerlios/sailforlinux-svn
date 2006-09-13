@@ -279,8 +279,7 @@ class MainWin(Ui_DMainWin):
         if self.L_Regattas.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
-        regatta = L_Regattas.currentItem().text()
-        print regatta
+        regatta = self.L_Regattas.currentItem().text()
         fileType = QtCore.QString("html *.html")
 
         fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
@@ -294,10 +293,11 @@ class MainWin(Ui_DMainWin):
         if ext[0] == "html":
             FileExt = ".html"
             fname = fileName+FileExt
-            ExportEngine.ExportAsHTML(self.T_DetailRanking, fname)
+            ExportEngine.ExportAsHTML(self.T_DetailRanking, fname, regatta)
         if ext[0] == "pdf":
             FileExt = ".pdf"
-            ExportEngine.ExportAsPDF(self.T_DetailRanking, fname)
+            fname = fileName+FileExt
+            ExportEngine.ExportAsPDF(self.T_DetailRanking, fname, regatta)
         
         
         
