@@ -1,0 +1,12 @@
+<table cellspacing="10" border="0">
+<th>Batterie</th><th>Spareggio</th>
+<tr valign="top"><td>
+<table cellspacing="0" cellpadding="10" border="1">
+<th></th><th>Skipper</th><th>Skipper</th><th>Vincitore</th>
+<tr><td>1° Regata</td><td>Massimiliano</td><td>Pietro</td><td align="center">Massimiliano</td>
+<tr><td>2° Regata</td><td>Gianluca</td><td>Sergio</td><td align="center">Sergio</td>
+<tr><td>3° Regata</td><td>Massimiliano</td><td>Gianluca</td><td align="center">Massimiliano</td>
+<tr><td>4° Regata</td><td>Sergio</td><td>Pietro</td><td align="center">Pietro</td>
+<tr><td>5° Regata</td><td>Gianluca</td><td>Pietro</td><td align="center">Pietro</td>
+<tr><td>6° Regata</td><td>Massimiliano</td><td>Sergio</td><td align="center">Sergio</td>
+</table>

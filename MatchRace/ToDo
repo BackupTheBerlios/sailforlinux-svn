@@ -1,11 +1,13 @@
 [To finish]
-- improve the status bar usage
 - input validation
 
 [Version 1]
 - i18n -> Italian Tranlation
 - add the data directory for output
-
+- improve the status bar usage
+- consider the possibility that two or more skipper finish with the same result: 
+  in this case it must be possible to add a single run (and relative ranking) 
+  with two or more skipper
  
 [Version 2]
 - add the configuration file

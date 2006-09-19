@@ -1,18 +1,16 @@
 [To finish]
 Export functions:
-- the pdf export need to set up the grid
 - the html export must be written
 - add a version suitable for the inclusion in the blog
 
 [Version 1.0]
-- export in pdf
 - export in html
 - translation
 - the columns to exclude must be configurable via config file 
 - add the validation of the input (points must be a number, skipper must be different)
 - check if the data file exist
 - add the export for the general ranking
-
+- add a legenda to the exports
 
 [Version 2.0]
 - add the possibility to change the configuration options with a gui

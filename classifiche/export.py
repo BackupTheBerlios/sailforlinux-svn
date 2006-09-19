@@ -1,5 +1,8 @@
 #!/usr/bin/env python2.4
 
+import string
+
+
 # ReportLab include
 from reportlab.platypus import *
 #from reportlab import rl_config
@@ -16,29 +19,46 @@ class Export:
     def __init__(self):
         pass
     
+        
+    def ExtractData(self, DataSource):
+        DataDest = []
+        cols = DataSource.columnCount()
+        subdata = []
+        subdata.append("Skipper")
+        for c in range(1,cols-1):
+            subdata.append("Race %d"%c)
+        subdata.append("Total")
+        DataDest.append(subdata)
+        rows = DataSource.rowCount()
+        for y in range(0,rows):
+            subdata = []
+            for x in range(0,cols):
+                txt = str(DataSource.item(y,x).text())
+                subdata.append(txt)
+            DataDest.append(subdata)
+        return DataDest
+    
+    def ExtractRegattaInfo(self, RegattaSource):
+        reg = str(RegattaSource).split(' ')
+        for r in range(0,len(reg)):
+            reg[r] = reg[r].capitalize()
+        classe = reg[-1]
+        reg[-1] = ''
+        race = string.join(reg)
+        return ([race,classe])
+
+        
     def ExportAsPDF(self, DataGrid, FileName, Regatta):
         doc = SimpleDocTemplate(FileName, pagesize=landscape(A4), leftMargin=units.mm*20, topMargin=units.mm*10, bottomMargin=units.mm*10)
         styleSheet = getSampleStyleSheet()
         styNormal = styleSheet['Normal']
         styNormal.spaceBefore = 6
         styNormal.spaceAfter = 6
-        data = []
-        cols = DataGrid.columnCount()
-        subdata = []
-        subdata.append("Skipper")
-        for c in range(1,cols-1):
-            subdata.append("Race %d"%c)
-        subdata.append("Total")
-        data.append(subdata)
-        rows = DataGrid.rowCount()
-        for y in range(0,rows):
-            subdata = []
-            for x in range(0,cols):
-                txt = str(DataGrid.item(y,x).text())
-                subdata.append(txt)
-            data.append(subdata)
+        data = self.ExtractData(DataGrid)
         cw = []
         cw.append(100)
+        cols = DataGrid.columnCount()
+        rows = DataGrid.rowCount()
         for c in range(0,cols-1):
             cw.append(50)    
         rowheight= 100
@@ -57,17 +77,17 @@ class Export:
             ('SIZE',(0,1),(cols,rows),14)
             ]
             )
+        (race, classe) = self.ExtractRegattaInfo(Regatta)
         t.setStyle(GRID_STYLE)
-        reg = Regatta.split(' ')
-        classe = reg[-1]
-        p = Paragraph("""Classifica %s classe %s\n"""%(reg[0], reg[1]), styleSheet['Heading1'])
+        p = Paragraph("""Classifica '%s' classe %s\n"""%(race , classe), styleSheet['Heading1'])
         flowables = [p,t]
         
         doc.build (flowables)
                             
         
     def ExportAsHTML(self, DataGrid, FileName, Regatta):     
-        print FileName
-        print type(DataGrid)
+        data = self.ExtractData(DataGrid)
+        
+        
  
  

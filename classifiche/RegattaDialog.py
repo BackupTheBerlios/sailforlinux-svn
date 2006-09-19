@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Mon Sep 11 17:27:21 2006
+# Created: Tue Sep 19 15:41:36 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_RegattaDialog(object):
     def setupUi(self, RegattaDialog):
         RegattaDialog.setObjectName("RegattaDialog")
-        RegattaDialog.resize(QtCore.QSize(QtCore.QRect(0,0,216,325).size()).expandedTo(RegattaDialog.minimumSizeHint()))
+        RegattaDialog.resize(QtCore.QSize(QtCore.QRect(0,0,270,241).size()).expandedTo(RegattaDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(RegattaDialog)
         self.vboxlayout.setMargin(9)
@@ -24,9 +24,6 @@ class Ui_RegattaDialog(object):
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-
-        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout.addItem(spacerItem)
 
         self.vboxlayout1 = QtGui.QVBoxLayout()
         self.vboxlayout1.setMargin(0)
@@ -45,31 +42,51 @@ class Ui_RegattaDialog(object):
         self.T_DialogRegattaValue = QtGui.QLineEdit(RegattaDialog)
         self.T_DialogRegattaValue.setObjectName("T_DialogRegattaValue")
         self.vboxlayout2.addWidget(self.T_DialogRegattaValue)
+        self.vboxlayout1.addLayout(self.vboxlayout2)
+
+        self.vboxlayout3 = QtGui.QVBoxLayout()
+        self.vboxlayout3.setMargin(0)
+        self.vboxlayout3.setSpacing(6)
+        self.vboxlayout3.setObjectName("vboxlayout3")
 
         self.label_3 = QtGui.QLabel(RegattaDialog)
         self.label_3.setObjectName("label_3")
-        self.vboxlayout2.addWidget(self.label_3)
+        self.vboxlayout3.addWidget(self.label_3)
 
         self.T_DialogClassValue = QtGui.QLineEdit(RegattaDialog)
         self.T_DialogClassValue.setObjectName("T_DialogClassValue")
-        self.vboxlayout2.addWidget(self.T_DialogClassValue)
+        self.vboxlayout3.addWidget(self.T_DialogClassValue)
+        self.vboxlayout1.addLayout(self.vboxlayout3)
+
+        self.vboxlayout4 = QtGui.QVBoxLayout()
+        self.vboxlayout4.setMargin(0)
+        self.vboxlayout4.setSpacing(6)
+        self.vboxlayout4.setObjectName("vboxlayout4")
 
         self.label_2 = QtGui.QLabel(RegattaDialog)
         self.label_2.setObjectName("label_2")
-        self.vboxlayout2.addWidget(self.label_2)
+        self.vboxlayout4.addWidget(self.label_2)
 
         self.T_DialogSkipperValue = QtGui.QLineEdit(RegattaDialog)
         self.T_DialogSkipperValue.setObjectName("T_DialogSkipperValue")
-        self.vboxlayout2.addWidget(self.T_DialogSkipperValue)
+        self.vboxlayout4.addWidget(self.T_DialogSkipperValue)
+        self.vboxlayout1.addLayout(self.vboxlayout4)
+
+        self.vboxlayout5 = QtGui.QVBoxLayout()
+        self.vboxlayout5.setMargin(0)
+        self.vboxlayout5.setSpacing(6)
+        self.vboxlayout5.setObjectName("vboxlayout5")
 
         self.labelrace = QtGui.QLabel(RegattaDialog)
         self.labelrace.setObjectName("labelrace")
-        self.vboxlayout2.addWidget(self.labelrace)
+        self.vboxlayout5.addWidget(self.labelrace)
 
         self.T_DialogRaceValue = QtGui.QLineEdit(RegattaDialog)
         self.T_DialogRaceValue.setObjectName("T_DialogRaceValue")
-        self.vboxlayout2.addWidget(self.T_DialogRaceValue)
-        self.vboxlayout1.addLayout(self.vboxlayout2)
+        self.vboxlayout5.addWidget(self.T_DialogRaceValue)
+        self.vboxlayout1.addLayout(self.vboxlayout5)
+        self.hboxlayout.addLayout(self.vboxlayout1)
+        self.vboxlayout.addLayout(self.hboxlayout)
 
         self.hboxlayout1 = QtGui.QHBoxLayout()
         self.hboxlayout1.setMargin(0)
@@ -83,12 +100,7 @@ class Ui_RegattaDialog(object):
         self.cancelButton = QtGui.QPushButton(RegattaDialog)
         self.cancelButton.setObjectName("cancelButton")
         self.hboxlayout1.addWidget(self.cancelButton)
-        self.vboxlayout1.addLayout(self.hboxlayout1)
-        self.hboxlayout.addLayout(self.vboxlayout1)
-
-        spacerItem1 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout.addItem(spacerItem1)
-        self.vboxlayout.addLayout(self.hboxlayout)
+        self.vboxlayout.addLayout(self.hboxlayout1)
 
         self.retranslateUi(RegattaDialog)
         QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),RegattaDialog.accept)
