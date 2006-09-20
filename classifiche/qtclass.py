@@ -215,18 +215,33 @@ class MainWin(Ui_DMainWin):
         self.T_DetailRanking.resizeColumnsToContents() 
         
         
-    def SaveRankingData(self):
-        if self.L_Regattas.currentItem() == None:
+    def SaveRankingData(self, DataType, DataSource):
+        if DataType.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
-        current_regatta = self.L_Regattas.currentItem().text()
+        current_regatta = DataType.currentItem().text()
         file = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
-        FO = open(file, "w")
-        for y in range (0, self.T_DetailRanking.rowCount()):
-            skipper = str(self.T_DetailRanking.item(y,0).text())
+        
+        fileType = QtCore.QString("cla *.cla")
+        fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
+                                                            "./data",
+                                                            "cla *.cla",
+                                                            fileType
+                                                            )
+        ext = str(fileType).split(" ")
+        if ext[0] == "cla":
+            FileExt = ".cla"
+            if fileName[-4:] == FileExt:
+                FileExt = ""
+            fname = fileName+FileExt
+                                                            
+        
+        FO = open(fname, "w")
+        for y in range (0, DataSource.rowCount()):
+            skipper = str(DataSource.item(y,0).text())
             races = []
-            for x in range(1, self.T_DetailRanking.columnCount()-1):
-                races.append(str(self.T_DetailRanking.item(y,x).text()))
+            for x in range(1, DataSource.columnCount()-1):
+                races.append(str(DataSource.item(y,x).text()))
             riga = "%s="%(skipper)+",".join(races)
             FO.write(riga)
             FO.write("\n")
@@ -275,16 +290,16 @@ class MainWin(Ui_DMainWin):
     def CancelSkipper(self):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
         
-    def ExportRanking(self):
-        if self.L_Regattas.currentItem() == None:
+    def ExportRanking(self, DataType, DataSource):
+        if DataType.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
-        regatta = self.L_Regattas.currentItem().text()
+        regatta = DataType.currentItem().text()
         
         fileType = QtCore.QString("pdf *.pdf")
         fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
-                                                            ".",
-                                                            "pdf (*.pdf);;html (*.html)",
+                                                            "./export",
+                                                            "pdf (*.pdf);;html (*.html);;blg (*.blg)",
                                                             fileType
                                                             )
         FileExt = ".pdf"
@@ -295,20 +310,36 @@ class MainWin(Ui_DMainWin):
             if fileName[-5:] == FileExt:
                 FileExt = ""
             fname = fileName+FileExt
-            ExportEngine.ExportAsHTML(self.T_DetailRanking, fname, regatta)
+            ExportEngine.ExportAsHTML(DataSource, fname, regatta)
         if ext[0] == "pdf":
             FileExt = ".pdf"
             if fileName[-4:] == FileExt:
                 FileExt = ""
             fname = fileName+FileExt
-            ExportEngine.ExportAsPDF(self.T_DetailRanking, fname, regatta)
+            ExportEngine.ExportAsPDF(DataSource, fname, regatta)
+        if ext[0] == "blg":
+            FileExt = ".blg"
+            if fileName[-4:] == FileExt:
+                FileExt = ""
+            fname = fileName+FileExt
+            ExportEngine.ExportAsBLG(DataSource, fname, regatta)
         
+    
+    def ExportClassRank(self):
+        self.ExportRanking(self.L_Classi, self.T_GeneralRanking)
         
+    
+    def ExportRegattaRank(self):
+        self.ExportRanking(self.L_Regattas, self.T_DetailRanking)
+    
+            
+    def SaveClassRank(self):
+        self.SaveRankingData(self.L_Classi, self.T_GeneralRanking)
+    
         
-        
-        
+    def SaveRegattaRank(self):
+        self.SaveRankingData(self.L_Regattas, self.T_DetailRanking)
 
-        
     # End of Class
 
 
@@ -326,14 +357,17 @@ QtCore.QObject.connect(ui.L_Classi, QtCore.SIGNAL("itemSelectionChanged()"), ui.
 QtCore.QObject.connect(ui.L_Regattas, QtCore.SIGNAL("itemSelectionChanged()"), ui.LoadRegattaRanking)
 QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkipper)
 QtCore.QObject.connect(ui.B_AddRace, QtCore.SIGNAL("clicked()"), ui.AddRace)
-QtCore.QObject.connect(ui.B_SaveData, QtCore.SIGNAL("clicked()"), ui.SaveRankingData)
 QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged ()"), ui.CheckRegatta)
 QtCore.QObject.connect(ui.B_Legenda, QtCore.SIGNAL("clicked()"), ui.ShowLegenda)
 QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRegattaRanking)
 QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
 QtCore.QObject.connect(ui.B_DeleteRace, QtCore.SIGNAL("clicked()"), ui.CancelRace)
-QtCore.QObject.connect(ui.B_ExportPDF, QtCore.SIGNAL("clicked()"), ui.ExportRanking)
+
+QtCore.QObject.connect(ui.B_SaveClassRank, QtCore.SIGNAL("clicked()"), ui.SaveClassRank)
+QtCore.QObject.connect(ui.B_SaveRegattaRank, QtCore.SIGNAL("clicked()"), ui.SaveRegattaRank)
+QtCore.QObject.connect(ui.B_ExportClassRank, QtCore.SIGNAL("clicked()"), ui.ExportClassRank)
+QtCore.QObject.connect(ui.B_ExportRegattaRank, QtCore.SIGNAL("clicked()"), ui.ExportRegattaRank)
 
 
 ui.LoadData()

@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>706</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -116,6 +116,56 @@
               </item>
              </layout>
             </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="B_SaveClassRank" >
+                <property name="text" >
+                 <string>Save Data</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="B_ExportClassRank" >
+                <property name="text" >
+                 <string>Export Ranking</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
            </layout>
           </widget>
          </item>
@@ -126,8 +176,8 @@
            </property>
            <property name="sizeHint" >
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>276</width>
+             <height>75</height>
             </size>
            </property>
           </spacer>
@@ -145,46 +195,10 @@
          <property name="sizeHint" >
           <size>
            <width>20</width>
-           <height>327</height>
+           <height>342</height>
           </size>
          </property>
         </spacer>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
-          <string>General ranking</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QTableWidget" name="T_GeneralRanking" >
-            <property name="editTriggers" >
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="tabKeyNavigation" >
-             <bool>false</bool>
-            </property>
-            <property name="alternatingRowColors" >
-             <bool>true</bool>
-            </property>
-            <property name="columnCount" >
-             <number>1</number>
-            </property>
-            <column>
-             <property name="text" >
-              <string>Skipper</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
        </item>
       </layout>
      </item>
@@ -209,7 +223,7 @@
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
-             <vsizetype>0</vsizetype>
+             <vsizetype>5</vsizetype>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -251,21 +265,58 @@
               </item>
              </layout>
             </item>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="B_SaveRegattaRank" >
+                <property name="text" >
+                 <string>Save Data</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="B_ExportRegattaRank" >
+                <property name="text" >
+                 <string>Export Ranking</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
            </layout>
           </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>
@@ -280,115 +331,96 @@
          <property name="sizeHint" >
           <size>
            <width>20</width>
-           <height>326</height>
+           <height>341</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
-          <string>Detail Ranking</string>
-         </property>
-         <layout class="QVBoxLayout" >
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="groupBox_3" >
+       <property name="title" >
+        <string>General ranking</string>
+       </property>
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QTableWidget" name="T_GeneralRanking" >
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="tabKeyNavigation" >
+           <bool>false</bool>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="columnCount" >
+           <number>1</number>
+          </property>
+          <column>
+           <property name="text" >
+            <string>Skipper</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_4" >
+       <property name="title" >
+        <string>Detail Ranking</string>
+       </property>
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" >
           <property name="margin" >
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="spacing" >
            <number>6</number>
           </property>
           <item>
-           <layout class="QHBoxLayout" >
-            <property name="margin" >
-             <number>0</number>
+           <widget class="QTableWidget" name="T_DetailRanking" >
+            <property name="alternatingRowColors" >
+             <bool>true</bool>
             </property>
-            <property name="spacing" >
-             <number>6</number>
+            <property name="columnCount" >
+             <number>1</number>
             </property>
-            <item>
-             <widget class="QTableWidget" name="T_DetailRanking" >
-              <property name="alternatingRowColors" >
-               <bool>true</bool>
-              </property>
-              <property name="columnCount" >
-               <number>1</number>
-              </property>
-              <column>
-               <property name="text" >
-                <string>Skipper</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" >
-              <property name="margin" >
-               <number>0</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item>
-               <widget class="QPushButton" name="B_AddSkipper" >
-                <property name="text" >
-                 <string>Add Skipper</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="B_DeleteSkipper" >
-                <property name="text" >
-                 <string>Delete Skipper</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="B_AddRace" >
-                <property name="text" >
-                 <string>Add Race</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="B_DeleteRace" >
-                <property name="text" >
-                 <string>Delete Race</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="B_CalcRanking" >
-                <property name="text" >
-                 <string>Update Rank</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="B_Legenda" >
-                <property name="text" >
-                 <string>Legenda</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation" >
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" >
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-           </layout>
+            <column>
+             <property name="text" >
+              <string>Skipper</string>
+             </property>
+            </column>
+           </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" >
+           <layout class="QVBoxLayout" >
             <property name="margin" >
              <number>0</number>
             </property>
@@ -396,41 +428,56 @@
              <number>6</number>
             </property>
             <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="B_SaveData" >
+             <widget class="QPushButton" name="B_AddSkipper" >
               <property name="text" >
-               <string>Save Data</string>
+               <string>Add Skipper</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="B_ExportPDF" >
+             <widget class="QPushButton" name="B_DeleteSkipper" >
               <property name="text" >
-               <string>Export Ranking</string>
+               <string>Delete Skipper</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="B_AddRace" >
+              <property name="text" >
+               <string>Add Race</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="B_DeleteRace" >
+              <property name="text" >
+               <string>Delete Race</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="B_CalcRanking" >
+              <property name="text" >
+               <string>Update Rank</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="B_Legenda" >
+              <property name="text" >
+               <string>Legenda</string>
               </property>
              </widget>
             </item>
             <item>
              <spacer>
               <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Vertical</enum>
               </property>
               <property name="sizeHint" >
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>20</width>
+                <height>40</height>
                </size>
               </property>
              </spacer>
@@ -438,9 +485,9 @@
            </layout>
           </item>
          </layout>
-        </widget>
-       </item>
-      </layout>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </item>
