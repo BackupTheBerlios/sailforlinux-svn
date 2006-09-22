@@ -58,7 +58,16 @@ class MainWin(Ui_DMainWin):
         FI = open("./data/classes","r")
         cla = FI.read()
         FI.close()
-        classes = cla.split("\n")
+        classes = []
+        _classes = cla.split("\n")
+        for c in _classes:
+            # -FIXME-
+            # To delete the \r in case we are using a win* platform
+            # must find a better method anyway
+            if c[-1:] == '\r':
+                c = c[:-1]
+            if c != '':
+                classes.append(c)
         return classes
         
     def WriteClasses(self):
@@ -113,17 +122,6 @@ class MainWin(Ui_DMainWin):
             except:
                 self.ShowErrorDialog("Error creating the file:\n%s"%file)
             
-
-    def SetRankingTable(self, skipper, race):
-#         To be deleted
-#         since not used anymore
-        TableHeader = ["Skipper"]
-        for x in range (0,int(skipper)):
-            self.T_DetailRanking.insertRow(self.T_DetailRanking.rowCount())
-            TableHeader.append("Race %d"%(x+1))
-        for y in range(0,int(race)):
-            self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount())
-        self.T_DetailRanking.setHorizontalHeaderLabels(TableHeader)    
         
     def LoadClassRanking(self):
         if  self.T_GeneralRanking.rowCount() > 1:
@@ -297,15 +295,6 @@ class MainWin(Ui_DMainWin):
         self.SaveRankingData()
         self.LoadRegattaRanking()
 
-
-    def CancelRegatta(self):
-        item = self.L_Regattas.selectedItems()
-        self.L_Regattas.setCurrentItem(item[0])
-        pos = self.L_Regattas.currentRow()
-        current_reg = self.L_Regattas.item(pos).text()
-        file = self.inputpath+re.sub(' ','_',str(current_reg))+".cla"
-        os.remove(file)
-        self.LoadData()
     
     def CancelRace(self):
         x = self.T_DetailRanking.currentColumn()
@@ -368,13 +357,27 @@ class MainWin(Ui_DMainWin):
     def SaveRegattaRank(self):
         self.SaveRankingData(self.L_Regattas, self.T_DetailRanking)
 
+
+    def CancelClass(self):
+        row = self.L_Classi.currentRow()
+        i = self.L_Classi.takeItem(row)
+        del i
+        self.WriteClasses()
+    
+    def CancelRegatta(self):
+        row = self.L_Regattas.currentRow()
+        i = self.L_Regattas.takeItem(row)
+        current_reg=i.text()
+        file = self.inputpath+re.sub(' ','_',str(current_reg))+".cla"
+        os.remove(file)
+        del i
+            
     # End of Class
 
 
 
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
-
 ui = MainWin()
 ui.setupUi(window)
 
@@ -388,18 +391,16 @@ QtCore.QObject.connect(ui.B_AddRace, QtCore.SIGNAL("clicked()"), ui.AddRace)
 QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged ()"), ui.CheckRegatta)
 QtCore.QObject.connect(ui.B_Legenda, QtCore.SIGNAL("clicked()"), ui.ShowLegenda)
 QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRegattaRanking)
-QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
 QtCore.QObject.connect(ui.B_DeleteRace, QtCore.SIGNAL("clicked()"), ui.CancelRace)
-
 QtCore.QObject.connect(ui.B_SaveClassRank, QtCore.SIGNAL("clicked()"), ui.SaveClassRank)
 QtCore.QObject.connect(ui.B_SaveRegattaRank, QtCore.SIGNAL("clicked()"), ui.SaveRegattaRank)
 QtCore.QObject.connect(ui.B_ExportClassRank, QtCore.SIGNAL("clicked()"), ui.ExportClassRank)
 QtCore.QObject.connect(ui.B_ExportRegattaRank, QtCore.SIGNAL("clicked()"), ui.ExportRegattaRank)
-
+QtCore.QObject.connect(ui.B_CancelClass, QtCore.SIGNAL("clicked()"), ui.CancelClass)
+QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 
 ui.LoadData()
-
 window.show()
 sys.exit(app.exec_())
 
