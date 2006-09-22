@@ -1,4 +1,11 @@
-z[To finish]
+[To finish]
+- The data file of the ranking (regatta and general) must be indipendent from
+the name of the file. A possibility is to add a metainfo to the file with the name of
+the regatta and/or classes. The problem is that in this way, when I load a file, 
+I must scan all the files to determine which is correct, also if I am using a different 
+extension for the detailed ranking and the general ranking.
+ 
+- Implement the UpdateRegattaRanking
 
 
 [Version 1.0]

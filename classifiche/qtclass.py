@@ -292,9 +292,7 @@ class MainWin(Ui_DMainWin):
         pass
    
     def UpdateRegattaRanking(self):
-        self.SaveRankingData()
-        self.LoadRegattaRanking()
-
+        pass
     
     def CancelRace(self):
         x = self.T_DetailRanking.currentColumn()
