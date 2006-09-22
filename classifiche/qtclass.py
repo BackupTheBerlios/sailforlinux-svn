@@ -22,6 +22,7 @@ class MainWin(Ui_DMainWin):
     exepath = ''
     DNF = 0
     
+    
     def __init__(self):
         config = ConfigParser.ConfigParser()
         config.readfp(open('qtclass.cfg'))
@@ -36,7 +37,6 @@ class MainWin(Ui_DMainWin):
             classes = self.ReadClasses()
         except:
             pass
-            
         try:
             flist = os.listdir(self.inputpath)
         except:
@@ -50,10 +50,9 @@ class MainWin(Ui_DMainWin):
                 p = cl.rindex('_') + 1
                 if cl[p:-4] in (classes):
                     Regatta = re.sub('_',' ',cl[:-4])
-                    print Regatta
                     self.L_Regattas.addItem(Regatta)
             except:
-                print "Here"
+                pass
         
     def ReadClasses(self):
         FI = open("./data/classes","r")
@@ -61,13 +60,25 @@ class MainWin(Ui_DMainWin):
         FI.close()
         classes = cla.split("\n")
         return classes
-                    
+        
+    def WriteClasses(self):
+        FO = open("./data/classes","w")
+        r = self.L_Classi.count()
+        for c in range(0,r):
+            FO.write(self.L_Classi.item(c).text())
+            FO.write("\n")
+        FO.close()
+        
+        
+
     def ExecClassDialog(self):
         win = QtGui.QDialog()
         uid = Ui_ClassDialog()
         uid.setupUi(win)
         if win.exec_():
             self.L_Classi.addItem(uid.T_DialogClassValue.text())
+            self.WriteClasses()
+            
 
     def ShowLegenda(self):
         win = QtGui.QDialog()
@@ -91,7 +102,7 @@ class MainWin(Ui_DMainWin):
         uid.C_RegattaClass.addItems(classes)
 
         if win.exec_():
-            Class = uid.T_DialogClassValue.text()
+            Class = uid.C_RegattaClass.currentText()
             Regatta = uid.T_DialogRegattaValue.text()
             Data = Regatta+ " " + Class 
             file = self.outputpath+re.sub(' ','_',str(Data))+".cla"
@@ -101,10 +112,11 @@ class MainWin(Ui_DMainWin):
                 self.L_Regattas.addItem(Data)
             except:
                 self.ShowErrorDialog("Error creating the file:\n%s"%file)
-            self.SetRankingTable(uid.T_DialogSkipperValue.text(),
-                                    uid.T_DialogRaceValue.text())
+            
 
     def SetRankingTable(self, skipper, race):
+#         To be deleted
+#         since not used anymore
         TableHeader = ["Skipper"]
         for x in range (0,int(skipper)):
             self.T_DetailRanking.insertRow(self.T_DetailRanking.rowCount())
@@ -141,9 +153,11 @@ class MainWin(Ui_DMainWin):
             FI = open(File, 'r')
             _LRank = FI.read()
             FI.close()
+            # needed to return if the file is empty
+            if len(_LRank) == 0:
+                return
         except:
             return
-
         LRank = _LRank.replace("\r","")
         Rank = LRank.split('\n')
         Ranks = {}
