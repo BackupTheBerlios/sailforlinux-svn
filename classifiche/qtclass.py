@@ -33,26 +33,35 @@ class MainWin(Ui_DMainWin):
         
     def LoadData(self):
         try:
+            classes = self.ReadClasses()
+        except:
+            pass
+            
+        try:
             flist = os.listdir(self.inputpath)
         except:
             os.mkdir(self.inputpath)
             flist = os.listdir(self.inputpath)
         self.L_Classi.clear()
         self.L_Regattas.clear()
-        
+        self.L_Classi.addItems(classes)
         for cl in flist:
-            if cl[0:8] == "generale":
-                Classe = cl[9:cl.rindex('_',2)]
-                self.L_Classi.addItem(Classe)
-            RegData = cl.split('.')[0]
             try:
-                p = RegData.rindex('_') + 1
-                if RegData[p:] == 'FF' or RegData[p:] == 'LIBERA':
-                    Regatta = re.sub('_',' ',RegData)
+                p = cl.rindex('_') + 1
+                if cl[p:-4] in (classes):
+                    Regatta = re.sub('_',' ',cl[:-4])
+                    print Regatta
                     self.L_Regattas.addItem(Regatta)
             except:
-                pass
+                print "Here"
         
+    def ReadClasses(self):
+        FI = open("./data/classes","r")
+        cla = FI.read()
+        FI.close()
+        classes = cla.split("\n")
+        return classes
+                    
     def ExecClassDialog(self):
         win = QtGui.QDialog()
         uid = Ui_ClassDialog()
@@ -78,6 +87,9 @@ class MainWin(Ui_DMainWin):
         win = QtGui.QDialog()
         uid = Ui_RegattaDialog()
         uid.setupUi(win)
+        classes = self.ReadClasses()
+        uid.C_RegattaClass.addItems(classes)
+
         if win.exec_():
             Class = uid.T_DialogClassValue.text()
             Regatta = uid.T_DialogRegattaValue.text()
@@ -125,11 +137,13 @@ class MainWin(Ui_DMainWin):
        
         
     def LoadDataFile(self, File, Item, Header):
-        FI = open(File, 'r')
-        _LRank = FI.read()
-        FI.close()
-        if len(_LRank) == 0:
-            return 
+        try:
+            FI = open(File, 'r')
+            _LRank = FI.read()
+            FI.close()
+        except:
+            return
+
         LRank = _LRank.replace("\r","")
         Rank = LRank.split('\n')
         Ranks = {}
@@ -224,7 +238,7 @@ class MainWin(Ui_DMainWin):
         
         fileType = QtCore.QString("cla *.cla")
         fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
-                                                            "./data",
+                                                            "./saved_data",
                                                             "cla *.cla",
                                                             fileType
                                                             )

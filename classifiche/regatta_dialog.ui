@@ -8,121 +8,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>270</width>
-    <height>241</height>
+    <width>310</width>
+    <height>120</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>0</hsizetype>
+    <vsizetype>0</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Regatta</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QGridLayout" >
    <property name="margin" >
     <number>9</number>
    </property>
    <property name="spacing" >
     <number>6</number>
    </property>
-   <item>
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
+   <item row="1" column="0" >
+    <widget class="QLabel" name="label_3" >
+     <property name="text" >
+      <string>Class</string>
      </property>
-     <property name="spacing" >
-      <number>6</number>
-     </property>
-     <item>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label" >
-           <property name="text" >
-            <string>Insert new regatta</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="T_DialogRegattaValue" />
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_3" >
-           <property name="text" >
-            <string>Class</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="T_DialogClassValue" />
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="label_2" >
-           <property name="text" >
-            <string>Number of Skipper</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="T_DialogSkipperValue" />
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="labelrace" >
-           <property name="text" >
-            <string>Number of Race</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="T_DialogRaceValue" />
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    </widget>
    </item>
-   <item>
+   <item row="2" column="0" colspan="2" >
     <layout class="QHBoxLayout" >
      <property name="margin" >
       <number>0</number>
@@ -145,6 +60,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QLineEdit" name="T_DialogRegattaValue" />
+   </item>
+   <item row="0" column="0" >
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Insert new regatta</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" >
+    <widget class="QComboBox" name="C_RegattaClass" />
    </item>
   </layout>
  </widget>
