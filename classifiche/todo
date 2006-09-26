@@ -1,11 +1,6 @@
 [To finish]
-- The data file of the ranking (regatta and general) must be indipendent from
-the name of the file. A possibility is to add a metainfo to the file with the name of
-the regatta and/or classes. The problem is that in this way, when I load a file, 
-I must scan all the files to determine which is correct, also if I am using a different 
-extension for the detailed ranking and the general ranking.
+- How I build the class ranking data ?
  
-- Implement the UpdateRegattaRanking
 
 
 [Version 1.0]
@@ -23,4 +18,13 @@ extension for the detailed ranking and the general ranking.
   class
 - redesign the legenda
 - the sorting must consider the value of the total colum as integer
+- consider the mathrace ranking
+
+
+[Some time after 1.0]
 - add the regatta info (something like metadata)
+- The data file of the ranking (regatta and general) must be indipendent from
+the name of the file. A possibility is to add a metainfo to the file with the name of
+the regatta and/or classes. The problem is that in this way, when I load a file, 
+I must scan all the files to determine which is correct, also if I am using a different 
+extension for the detailed ranking and the general ranking. 

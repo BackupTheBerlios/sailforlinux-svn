@@ -246,38 +246,37 @@ class MainWin(Ui_DMainWin):
             self.ShowWarningDialog("Please select a regatta.\n")
             return
         current_regatta = DataType.currentItem().text()
-        file = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
         
-        fileType = QtCore.QString("cla *.cla")
-        fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
-                                                            "./saved_data",
-                                                            "cla *.cla",
-                                                            fileType
-                                                            )
-        ext = str(fileType).split(" ")
-        if ext[0] == "cla":
-            FileExt = ".cla"
-            if fileName[-4:] == FileExt:
-                FileExt = ""
-            fname = fileName+FileExt
-                                                            
+        fname = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
         
         FO = open(fname, "w")
-        for y in range (0, DataSource.rowCount()):
-            skipper = str(DataSource.item(y,0).text())
+        rows = DataSource.rowCount()
+        for row in range (0, rows):
+            skipper = str(DataSource.item(row,0).text())
             races = []
+            cols = DataSource.columnCount()-1
+            print cols
+            if cols == 0:
+            # Case of a match race ranking
+                print cols
             for x in range(1, DataSource.columnCount()-1):
-                races.append(str(DataSource.item(y,x).text()))
+                races.append(str(DataSource.item(row,x).text()))
             riga = "%s="%(skipper)+",".join(races)
             FO.write(riga)
             FO.write("\n")
         FO.close()
+        self.ShowMessageDialog("File %s saved"%fname)
             
     def CheckRegatta(self):
         if self.L_Regattas.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
-
+            
+    def ShowMessageDialog(self, msg):
+        QtGui.QMessageBox.information(None, self.tr("Info"),
+                        self.tr(msg),
+                        QtGui.QMessageBox.Ok )
+    
     def ShowWarningDialog(self, msg):
         QtGui.QMessageBox.warning(None, self.tr("Alert"),
                         self.tr(msg),
@@ -292,7 +291,15 @@ class MainWin(Ui_DMainWin):
         pass
    
     def UpdateRegattaRanking(self):
-        pass
+        rows = self.T_DetailRanking.rowCount()
+        cols = self.T_DetailRanking.columnCount()
+        for row in range(0,rows):
+            tot = 0
+            for col in range(1, cols-1):
+                tot += int(self.T_DetailRanking.item(row, col).text())
+            tot = QtGui.QTableWidgetItem(str(tot))
+            self.T_DetailRanking.setItem(row,col+1,tot)
+            
     
     def CancelRace(self):
         x = self.T_DetailRanking.currentColumn()
