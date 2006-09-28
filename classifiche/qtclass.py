@@ -124,14 +124,18 @@ class MainWin(Ui_DMainWin):
             
         
     def LoadClassRanking(self):
+    
         if  self.T_GeneralRanking.rowCount() > 1:
             self.ClearClassRank()
         items = self.L_Classi.selectedItems()
         self.L_Classi.setCurrentItem(items[0])
         pos = self.L_Classi.currentRow()
         current_class = self.L_Classi.item(pos).text()
-        file = self.inputpath+"generale_%s_2006.cla"%current_class
-        self.LoadDataFile(file, self.T_GeneralRanking, "Reg.")
+        # need to be implemented
+        # when finished, I can wipe out the data file for the class ranking
+#        file = self.inputpath+"generale_%s_2006.cla"%current_class
+#        self.LoadDataFile(file, self.T_GeneralRanking, "Reg.")
+        
 
     def LoadRegattaRanking(self):
         current_class = ''
@@ -142,58 +146,56 @@ class MainWin(Ui_DMainWin):
                 current_class = self.L_Regattas.item(c).text()
                 break
         if current_class != '':
-            file = self.inputpath+re.sub(' ','_',str(current_class))+".cla"
-            self.LoadDataFile(file, self.T_DetailRanking, "Race")
-       
-        
-    def LoadDataFile(self, File, Item, Header):
-        try:
-            datafile = ConfigParser.ConfigParser()
-            datafile.readfp(open(File))
-        except:
-            return
-
-        x = 0
-        TableHeader = ["Skipper"]
-        points = {}
-        Ranks = {}            
-        for sk in datafile.options('result'):
-            _pt = datafile.get('result', sk)
-            pt = _pt.split(',')
-            tot = 0
-            Ranks[sk] = pt
-            for p in pt:
-                if p == 'DNF':
-                    tot = tot + self.DNF
-                else:
-                    tot = tot + int(p)
-            Ranks[sk].append(str(tot))
-            points[sk] = tot
-        it = points.items()
-        it = [(v, k) for (k, v) in it]
-        it.sort()
-        it = [(k, v) for (v, k) in it]
-        for c in range(0,len(Ranks[sk])):
-            Item.insertColumn(c+1)
-            TableHeader.append("%s %d"%(Header,(c+1)))
-        TableHeader.remove(TableHeader[len(TableHeader)-1])
-        TableHeader.append("Tot")
-        Item.setHorizontalHeaderLabels(TableHeader)     
-        for sk_ in it:
-            sk = sk_[0]
-            Item.insertRow(Item.rowCount())  
-            ski = QtGui.QTableWidgetItem(sk)
-            Item.setItem(x,0,ski)
-            c = 1
-            for p in Ranks[sk]:
-                if p == '999':
-                    p = 'DNF'
-                pt = QtGui.QTableWidgetItem(p)
-                pt.setTextAlignment(QtCore.Qt.AlignCenter)
-                Item.setItem(x,c,pt)
-                c = c + 1
-            x = x + 1
-        Item.resizeColumnsToContents()    
+            File = self.inputpath+re.sub(' ','_',str(current_class))+".cla"
+            Header = "Race"
+            
+            try:
+                datafile = ConfigParser.ConfigParser()
+                datafile.readfp(open(File))
+            except:
+                return
+  
+            x = 0
+            TableHeader = ["Skipper"]
+            points = {}
+            Ranks = {}            
+            for sk in datafile.options('result'):
+                _pt = datafile.get('result', sk)
+                pt = _pt.split(',')
+                tot = 0
+                Ranks[sk] = pt
+                for p in pt:
+                    if p == 'DNF':
+                        tot = tot + self.DNF
+                    else:
+                        tot = tot + int(p)
+                Ranks[sk].append(str(tot))
+                points[sk] = tot
+            it = points.items()
+            it = [(v, k) for (k, v) in it]
+            it.sort()
+            it = [(k, v) for (v, k) in it]
+            for c in range(0,len(Ranks[sk])):
+                self.T_DetailRanking.insertColumn(c+1)
+                TableHeader.append("%s %d"%(Header,(c+1)))
+            TableHeader.remove(TableHeader[len(TableHeader)-1])
+            TableHeader.append("Tot")
+            self.T_DetailRanking.setHorizontalHeaderLabels(TableHeader)     
+            for sk_ in it:
+                sk = sk_[0]
+                self.T_DetailRanking.insertRow(self.T_DetailRanking.rowCount())  
+                ski = QtGui.QTableWidgetItem(sk)
+                self.T_DetailRanking.setItem(x,0,ski)
+                c = 1
+                for p in Ranks[sk]:
+                    if p == '999':
+                        p = 'DNF'
+                    pt = QtGui.QTableWidgetItem(p)
+                    pt.setTextAlignment(QtCore.Qt.AlignCenter)
+                    self.T_DetailRanking.setItem(x,c,pt)
+                    c = c + 1
+                x = x + 1
+            self.T_DetailRanking.resizeColumnsToContents()    
         
     
     def ClearRankTable(self):

@@ -1,7 +1,5 @@
 [To finish]
-- How I build the class ranking data ? 
-- To accomplish the item above, there is a need to convert the file format of the data to a 
-  ConfigParser object. This way it is possible to add also the metadata
+- How I build the class ranking data ? (with the ranking section of each regatta file)
 
 
 [Version 1.0]

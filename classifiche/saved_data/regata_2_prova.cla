@@ -1,0 +1,14 @@
+[ranking]
+a = 1
+c = 5
+b = 3
+e = 4
+d = 2
+
+[result]
+a = 1
+c = 5
+b = 3
+e = 4
+d = 2
+
