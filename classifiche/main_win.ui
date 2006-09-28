@@ -466,7 +466,7 @@
               <item>
                <widget class="QPushButton" name="B_CalcRanking" >
                 <property name="text" >
-                 <string>Update Rank</string>
+                 <string>Update Ranking</string>
                 </property>
                </widget>
               </item>
@@ -543,8 +543,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>819</x>
-     <y>63</y>
+     <x>903</x>
+     <y>802</y>
     </hint>
     <hint type="destinationlabel" >
      <x>618</x>

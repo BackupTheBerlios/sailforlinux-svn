@@ -148,28 +148,21 @@ class MainWin(Ui_DMainWin):
         
     def LoadDataFile(self, File, Item, Header):
         try:
-            FI = open(File, 'r')
-            _LRank = FI.read()
-            FI.close()
-            # needed to return if the file is empty
-            if len(_LRank) == 0:
-                return
+            datafile = ConfigParser.ConfigParser()
+            datafile.readfp(open(File))
         except:
             return
-        LRank = _LRank.replace("\r","")
-        Rank = LRank.split('\n')
-        Ranks = {}
+
         x = 0
         TableHeader = ["Skipper"]
-        for cr in Rank:
-            if cr == '':
-                break
-            sk = cr[0:cr.index('=')]
-            Ranks[sk] = cr[cr.index('=')+1:].split(',')
         points = {}
-        for sk in Ranks:
-            tot = 0    
-            for p in Ranks[sk]:
+        Ranks = {}            
+        for sk in datafile.options('result'):
+            _pt = datafile.get('result', sk)
+            pt = _pt.split(',')
+            tot = 0
+            Ranks[sk] = pt
+            for p in pt:
                 if p == 'DNF':
                     tot = tot + self.DNF
                 else:
@@ -186,7 +179,6 @@ class MainWin(Ui_DMainWin):
         TableHeader.remove(TableHeader[len(TableHeader)-1])
         TableHeader.append("Tot")
         Item.setHorizontalHeaderLabels(TableHeader)     
-        y = 0
         for sk_ in it:
             sk = sk_[0]
             Item.insertRow(Item.rowCount())  
@@ -232,8 +224,12 @@ class MainWin(Ui_DMainWin):
         
     def AddRace(self):
         self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount()-1)
+        cols = self.T_DetailRanking.columnCount()
+        if cols == 2:
+            self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount()-1)
+            cols += 1
         TableHeader=[]
-        for c in range(0,self.T_DetailRanking.columnCount()-1):
+        for c in range(0, cols -1):
             TableHeader.append("%s %d"%("Race",(c)))
         TableHeader[0] = "Skipper"
         TableHeader.append("Tot")
@@ -242,28 +238,40 @@ class MainWin(Ui_DMainWin):
         
         
     def SaveRankingData(self, DataType, DataSource):
+        datafile = ConfigParser.ConfigParser()
+        datafile.add_section('result')
         if DataType.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
         current_regatta = DataType.currentItem().text()
-        
         fname = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
-        
         FO = open(fname, "w")
+        datafile.readfp(FO)
         rows = DataSource.rowCount()
+        cols = DataSource.columnCount()
         for row in range (0, rows):
             skipper = str(DataSource.item(row,0).text())
             races = []
-            cols = DataSource.columnCount()-1
-            print cols
-            if cols == 0:
-            # Case of a match race ranking
-                print cols
-            for x in range(1, DataSource.columnCount()-1):
+            for x in range(1, cols -1):
                 races.append(str(DataSource.item(row,x).text()))
-            riga = "%s="%(skipper)+",".join(races)
-            FO.write(riga)
-            FO.write("\n")
+            opt = skipper
+            value = ",".join(races)
+            datafile.set('result',opt, value)
+        datafile.add_section('ranking')
+        points = {}
+        for row in range(0, rows):
+            opt = str(DataSource.item(row,0).text())
+            value = str(DataSource.item(row,cols-1).text())
+            points[opt] = int(value)
+        it = points.items()
+        it = [(v, k) for (k, v) in it]
+        it.sort()
+        it = [(k, v) for (v, k) in it]
+        c = 1
+        for i in it:
+            datafile.set('ranking',str(i[0]), str(c))
+            c += 1
+        datafile.write(FO)
         FO.close()
         self.ShowMessageDialog("File %s saved"%fname)
             
@@ -288,7 +296,6 @@ class MainWin(Ui_DMainWin):
                         self.tr(msg),
                         QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
                         QtGui.QMessageBox.Escape)
-        pass
    
     def UpdateRegattaRanking(self):
         rows = self.T_DetailRanking.rowCount()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Sat Sep 23 00:32:54 2006
+# Created: Thu Sep 28 16:04:11 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -314,6 +314,6 @@ class Ui_DMainWin(object):
         self.B_DeleteSkipper.setText(self.tr("Delete Skipper"))
         self.B_AddRace.setText(self.tr("Add Race"))
         self.B_DeleteRace.setText(self.tr("Delete Race"))
-        self.B_CalcRanking.setText(self.tr("Update Rank"))
+        self.B_CalcRanking.setText(self.tr("Update Ranking"))
         self.B_Legenda.setText(self.tr("Legenda"))
         self.okButton.setText(self.tr("Quit"))
