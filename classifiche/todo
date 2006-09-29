@@ -1,9 +1,9 @@
 [To finish]
+- add the validation of the input (points must be a number, skipper must be different)
 
 
 [Version 1.0]
 - translation
-- add the validation of the input (points must be a number, skipper must be different)
 - add a legenda to the exports
 - consider the discard, if present
 - in the regatta ranking, consider the eventuality that two or more skipper have the same points: the method to 
@@ -12,11 +12,8 @@
   * add a race with only these skipper (that must not be considered for the others)
 - add the possibility to change the configuration options with a gui (with qtableview)
 - when a result is modified, the program must ask to save or forget the change.
-- when a regatta ranking is saved, the general ranking must be updated, according with the
-  class
 - redesign the legenda
 - the sorting must consider the value of the total colum as integer
-- consider the mathrace ranking
 
 
 [Some time after 1.0]
