@@ -426,6 +426,31 @@ class MainWin(Ui_DMainWin):
         os.remove(file)
         del i
             
+    def CheckData(self):
+        if self.T_DetailRanking.currentItem() == None:
+            return
+        print "---",self.T_DetailRanking.currentColumn()
+
+        if self.T_DetailRanking.currentColumn() == 0:
+            #check for skipper
+            return
+        print "Here"
+        if self.T_DetailRanking.currentColumn() > 0:
+            if self.CheckIfInt(self.T_DetailRanking.currentItem().text()) == 0:
+                self.ShowErrorDialog("Points must be a number")
+                return
+                
+            
+    
+    def CheckIfInt(self, value):
+        ok = 1
+        try:
+            num = int(value)
+            print num
+        except ValueError:
+            ok = 0
+        print ok
+        return ok            
     # End of Class
 
 
@@ -442,7 +467,8 @@ QtCore.QObject.connect(ui.L_Classi, QtCore.SIGNAL("itemSelectionChanged()"), ui.
 QtCore.QObject.connect(ui.L_Regattas, QtCore.SIGNAL("itemSelectionChanged()"), ui.LoadRegattaRanking)
 QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkipper)
 QtCore.QObject.connect(ui.B_AddRace, QtCore.SIGNAL("clicked()"), ui.AddRace)
-QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged ()"), ui.CheckRegatta)
+QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged()"), ui.CheckRegatta)
+QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemChanged(QTableWidgetItem *)"), ui.CheckData)
 QtCore.QObject.connect(ui.B_Legenda, QtCore.SIGNAL("clicked()"), ui.ShowLegenda)
 QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRegattaRanking)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
