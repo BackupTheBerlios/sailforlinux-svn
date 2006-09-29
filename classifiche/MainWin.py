@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Thu Sep 28 16:04:11 2006
+# Created: Fri Sep 29 14:47:51 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -92,10 +92,6 @@ class Ui_DMainWin(object):
 
         spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout3.addItem(spacerItem)
-
-        self.B_SaveClassRank = QtGui.QPushButton(self.groupBox)
-        self.B_SaveClassRank.setObjectName("B_SaveClassRank")
-        self.hboxlayout3.addWidget(self.B_SaveClassRank)
 
         self.B_ExportClassRank = QtGui.QPushButton(self.groupBox)
         self.B_ExportClassRank.setObjectName("B_ExportClassRank")
@@ -285,7 +281,6 @@ class Ui_DMainWin(object):
         self.groupBox.setTitle(self.tr("Classes"))
         self.B_AddClass.setText(self.tr("Add"))
         self.B_CancelClass.setText(self.tr("Cancel"))
-        self.B_SaveClassRank.setText(self.tr("Save Data"))
         self.B_ExportClassRank.setText(self.tr("Export Ranking"))
         self.groupBox_2.setTitle(self.tr("Regattas"))
         self.B_AddRegatta.setText(self.tr("Add"))

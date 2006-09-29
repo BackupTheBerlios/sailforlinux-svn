@@ -130,12 +130,60 @@ class MainWin(Ui_DMainWin):
         items = self.L_Classi.selectedItems()
         self.L_Classi.setCurrentItem(items[0])
         pos = self.L_Classi.currentRow()
-        current_class = self.L_Classi.item(pos).text()
-        # need to be implemented
-        # when finished, I can wipe out the data file for the class ranking
-#        file = self.inputpath+"generale_%s_2006.cla"%current_class
-#        self.LoadDataFile(file, self.T_GeneralRanking, "Reg.")
+        current_class = str(self.L_Classi.item(pos).text())
         
+        regattas = os.listdir(self.inputpath)
+        points = {}
+        Ranks = {}            
+        x = 0
+        for reg in regattas:
+            if re.search(current_class, reg):
+                File = self.inputpath+reg
+                datafile = ConfigParser.ConfigParser()
+                datafile.readfp(open(File))
+                for sk in datafile.options('ranking'):
+                    pt = datafile.get('ranking', sk)
+                    try:
+                        Ranks[sk].append(pt)
+                    except:
+                        Ranks[sk] = [pt]
+        for r in Ranks:
+            tot = 0
+            for pt in Ranks[r]:
+                if pt == 'DNF':
+                    tot = tot + self.DNF
+                else:
+                    tot = tot + int(pt)
+            Ranks[r].append(str(tot))
+            points[r] = tot
+                    
+        it = points.items()
+        it = [(v, k) for (k, v) in it]
+        it.sort()
+        it = [(k, v) for (v, k) in it]
+        TableHeader = ["Skipper"]
+        Header = "Regatta"
+        for c in range(0,len(Ranks[sk])):
+            self.T_GeneralRanking.insertColumn(c+1)
+            TableHeader.append("%s %d"%(Header,(c+1)))
+        TableHeader.remove(TableHeader[len(TableHeader)-1])
+        TableHeader.append("Tot")
+        self.T_GeneralRanking.setHorizontalHeaderLabels(TableHeader)     
+        for sk_ in it:
+            sk = sk_[0]
+            self.T_GeneralRanking.insertRow(self.T_GeneralRanking.rowCount())  
+            ski = QtGui.QTableWidgetItem(sk)
+            self.T_GeneralRanking.setItem(x,0,ski)
+            c = 1
+            for p in Ranks[sk]:
+                if p == '999':
+                    p = 'DNF'
+                pt = QtGui.QTableWidgetItem(p)
+                pt.setTextAlignment(QtCore.Qt.AlignCenter)
+                self.T_GeneralRanking.setItem(x,c,pt)
+                c = c + 1
+            x = x + 1
+        self.T_GeneralRanking.resizeColumnsToContents()    
 
     def LoadRegattaRanking(self):
         current_class = ''
@@ -239,31 +287,31 @@ class MainWin(Ui_DMainWin):
         self.T_DetailRanking.resizeColumnsToContents() 
         
         
-    def SaveRankingData(self, DataType, DataSource):
+    def SaveRankingData(self):
         datafile = ConfigParser.ConfigParser()
         datafile.add_section('result')
-        if DataType.currentItem() == None:
+        if self.L_Regattas.currentItem() == None:
             self.ShowWarningDialog("Please select a regatta.\n")
             return
-        current_regatta = DataType.currentItem().text()
+        current_regatta = self.L_Regattas.currentItem().text()
         fname = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
         FO = open(fname, "w")
         datafile.readfp(FO)
-        rows = DataSource.rowCount()
-        cols = DataSource.columnCount()
+        rows = self.T_DetailRanking.rowCount()
+        cols = self.T_DetailRanking.columnCount()
         for row in range (0, rows):
-            skipper = str(DataSource.item(row,0).text())
+            skipper = str(self.T_DetailRanking.item(row,0).text())
             races = []
             for x in range(1, cols -1):
-                races.append(str(DataSource.item(row,x).text()))
+                races.append(str(self.T_DetailRanking.item(row,x).text()))
             opt = skipper
             value = ",".join(races)
             datafile.set('result',opt, value)
         datafile.add_section('ranking')
         points = {}
         for row in range(0, rows):
-            opt = str(DataSource.item(row,0).text())
-            value = str(DataSource.item(row,cols-1).text())
+            opt = str(self.T_DetailRanking.item(row,0).text())
+            value = str(self.T_DetailRanking.item(row,cols-1).text())
             points[opt] = int(value)
         it = points.items()
         it = [(v, k) for (k, v) in it]
@@ -363,14 +411,6 @@ class MainWin(Ui_DMainWin):
     def ExportRegattaRank(self):
         self.ExportRanking(self.L_Regattas, self.T_DetailRanking)
     
-            
-    def SaveClassRank(self):
-        self.SaveRankingData(self.L_Classi, self.T_GeneralRanking)
-    
-        
-    def SaveRegattaRank(self):
-        self.SaveRankingData(self.L_Regattas, self.T_DetailRanking)
-
 
     def CancelClass(self):
         row = self.L_Classi.currentRow()
@@ -407,8 +447,7 @@ QtCore.QObject.connect(ui.B_Legenda, QtCore.SIGNAL("clicked()"), ui.ShowLegenda)
 QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRegattaRanking)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
 QtCore.QObject.connect(ui.B_DeleteRace, QtCore.SIGNAL("clicked()"), ui.CancelRace)
-QtCore.QObject.connect(ui.B_SaveClassRank, QtCore.SIGNAL("clicked()"), ui.SaveClassRank)
-QtCore.QObject.connect(ui.B_SaveRegattaRank, QtCore.SIGNAL("clicked()"), ui.SaveRegattaRank)
+QtCore.QObject.connect(ui.B_SaveRegattaRank, QtCore.SIGNAL("clicked()"), ui.SaveRankingData)
 QtCore.QObject.connect(ui.B_ExportClassRank, QtCore.SIGNAL("clicked()"), ui.ExportClassRank)
 QtCore.QObject.connect(ui.B_ExportRegattaRank, QtCore.SIGNAL("clicked()"), ui.ExportRegattaRank)
 QtCore.QObject.connect(ui.B_CancelClass, QtCore.SIGNAL("clicked()"), ui.CancelClass)
