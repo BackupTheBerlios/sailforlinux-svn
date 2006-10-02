@@ -1,6 +1,6 @@
 [To finish]
 - add the validation of the input (points must be a number, skipper must be different)
-
+  the validation must be done also if the cell is reached with the tab
 
 [Version 1.0]
 - translation

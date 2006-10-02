@@ -21,6 +21,7 @@ class MainWin(Ui_DMainWin):
     outputpath = ''
     exepath = ''
     DNF = 0
+    OldData = None
     
     
     def __init__(self):
@@ -429,19 +430,20 @@ class MainWin(Ui_DMainWin):
     def CheckData(self):
         if self.T_DetailRanking.currentItem() == None:
             return
-        print "---",self.T_DetailRanking.currentColumn()
-
         if self.T_DetailRanking.currentColumn() == 0:
             #check for skipper
             return
-        print "Here"
         if self.T_DetailRanking.currentColumn() > 0:
             if self.CheckIfInt(self.T_DetailRanking.currentItem().text()) == 0:
                 self.ShowErrorDialog("Points must be a number")
+                self.T_DetailRanking.currentItem().setText(self.OldData)
+                self.OldData = None
                 return
                 
             
-    
+    def SaveOldData(self):
+        self.OldData = self.T_DetailRanking.currentItem().text()
+        
     def CheckIfInt(self, value):
         ok = 1
         try:
@@ -469,6 +471,7 @@ QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkippe
 QtCore.QObject.connect(ui.B_AddRace, QtCore.SIGNAL("clicked()"), ui.AddRace)
 QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged()"), ui.CheckRegatta)
 QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemChanged(QTableWidgetItem *)"), ui.CheckData)
+QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemClicked (QTableWidgetItem *)"), ui.SaveOldData)
 QtCore.QObject.connect(ui.B_Legenda, QtCore.SIGNAL("clicked()"), ui.ShowLegenda)
 QtCore.QObject.connect(ui.B_CalcRanking, QtCore.SIGNAL("clicked()"), ui.UpdateRegattaRanking)
 QtCore.QObject.connect(ui.B_DeleteSkipper, QtCore.SIGNAL("clicked()"), ui.CancelSkipper)
