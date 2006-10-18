@@ -20,6 +20,7 @@ class MainWin(Ui_DMainWin):
     inputpath = ''
     outputpath = ''
     exepath = ''
+    i18npath = ''
     DNF = 0
     OldData = None
     
@@ -31,7 +32,7 @@ class MainWin(Ui_DMainWin):
         self.inputpath = self.exepath+config.get("path","inputpath")
         self.outputpath = self.exepath+config.get("path","outputpath")
         self.DNF = int(config.get("points", "DNF"))
-        
+        self.i18npath = self.i18npath+config.get("path","i18npath")
         
     def LoadData(self):
         try:
@@ -163,7 +164,7 @@ class MainWin(Ui_DMainWin):
         it.sort()
         it = [(k, v) for (v, k) in it]
         TableHeader = ["Skipper"]
-        Header = "Regatta"
+        Header = self.tr("Regatta")
         for c in range(0,len(Ranks[sk])):
             self.T_GeneralRanking.insertColumn(c+1)
             TableHeader.append("%s %d"%(Header,(c+1)))
@@ -187,6 +188,16 @@ class MainWin(Ui_DMainWin):
         self.T_GeneralRanking.resizeColumnsToContents()    
 
     def LoadRegattaRanking(self):
+        try:
+            current_class = str(self.L_Regattas.currentItem().text())
+            if current_class[-1:] == '*':
+                k = self.ShowQuestionDialog("Save data ?")
+                if k == QtGui.QMessageBox.Yes:
+                    self.SaveRankingData(Regatta=current_class[:-1])
+                else:
+                    self.L_Regattas.currentItem().setText(current_class[:-1])
+        except:
+            pass
         current_class = ''
         if self.T_DetailRanking.rowCount() > 1:
             self.ClearRankTable()
@@ -196,14 +207,12 @@ class MainWin(Ui_DMainWin):
                 break
         if current_class != '':
             File = self.inputpath+re.sub(' ','_',str(current_class))+".cla"
-            Header = "Race"
-            
+            Header = self.tr("Race")
             try:
                 datafile = ConfigParser.ConfigParser()
                 datafile.readfp(open(File))
             except:
                 return
-  
             x = 0
             TableHeader = ["Skipper"]
             points = {}
@@ -288,13 +297,17 @@ class MainWin(Ui_DMainWin):
         self.T_DetailRanking.resizeColumnsToContents() 
         
         
-    def SaveRankingData(self):
+    def SaveRankingData(self, Regatta=None):
         datafile = ConfigParser.ConfigParser()
         datafile.add_section('result')
-        if self.L_Regattas.currentItem() == None:
-            self.ShowWarningDialog("Please select a regatta.\n")
-            return
-        current_regatta = self.L_Regattas.currentItem().text()
+        if Regatta == None:
+            if self.L_Regattas.currentItem() == None:
+                self.ShowWarningDialog("Please select a regatta.\n")
+                return
+            current_regatta = self.L_Regattas.currentItem().text()
+        else:
+            current_regatta = Regatta[:-1]
+        self.L_Regattas.currentItem().setText(current_regatta)
         fname = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
         FO = open(fname, "w")
         datafile.readfp(FO)
@@ -341,6 +354,11 @@ class MainWin(Ui_DMainWin):
                         self.tr(msg),
                         QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
                         QtGui.QMessageBox.Escape)
+
+    def ShowQuestionDialog(self, msg):
+        return QtGui.QMessageBox.question(None, self.tr("Question"),
+                        self.tr(msg),
+                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
     
     def ShowErrorDialog(self, msg):
         QtGui.QMessageBox.critical(None, self.tr("Error"),
@@ -354,7 +372,10 @@ class MainWin(Ui_DMainWin):
         for row in range(0,rows):
             tot = 0
             for col in range(1, cols-1):
-                tot += int(self.T_DetailRanking.item(row, col).text())
+                if self.T_DetailRanking.item(row, col).text() == 'DNF':
+                    tot += self.DNF
+                else:
+                    tot += int(self.T_DetailRanking.item(row, col).text())
             tot = QtGui.QTableWidgetItem(str(tot))
             self.T_DetailRanking.setItem(row,col+1,tot)
             
@@ -430,9 +451,12 @@ class MainWin(Ui_DMainWin):
     def CheckData(self):
         if self.T_DetailRanking.currentItem() == None:
             return
+        if self.L_Regattas.currentItem().text()[-1:] != '*':           
+            self.L_Regattas.currentItem().setText(self.L_Regattas.currentItem().text()+"*")            
         if self.T_DetailRanking.currentColumn() == 0:
-            #check for skipper
-            return
+            if self.ChechForSkipper(self.T_DetailRanking.currentItem().text(),self.T_DetailRanking.currentRow() ) == 0:
+                self.ShowErrorDialog("Skipper must be unique")
+                return
         if self.T_DetailRanking.currentColumn() > 0:
             if self.CheckIfInt(self.T_DetailRanking.currentItem().text()) == 0:
                 self.ShowErrorDialog("Points must be a number")
@@ -443,15 +467,25 @@ class MainWin(Ui_DMainWin):
             
     def SaveOldData(self):
         self.OldData = self.T_DetailRanking.currentItem().text()
+    
+    def ChechForSkipper(self, value, pos):
+        for s in range(0, self.T_DetailRanking.rowCount()):
+            if str(value) == str(self.T_DetailRanking.item(s, 0).text()) and s != pos:
+                return 0
+            
+    def CheckModified(self):
+        pass
         
     def CheckIfInt(self, value):
         ok = 1
+        if value == 'DNF':
+            return ok
+        if value == '':
+            return ok
         try:
             num = int(value)
-            print num
         except ValueError:
             ok = 0
-        print ok
         return ok            
     # End of Class
 
@@ -460,13 +494,18 @@ class MainWin(Ui_DMainWin):
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
 ui = MainWin()
-ui.setupUi(window)
+translator = QtCore.QTranslator()
+translator.load(QtCore.QString(ui.i18npath+'i18n_it'))
+QtGui.qApp.installTranslator(translator)
+ui.setupUi(window)  
 
+  
 # Custom Signal connections
 QtCore.QObject.connect(ui.B_AddClass, QtCore.SIGNAL("clicked()"), ui.ExecClassDialog)
 QtCore.QObject.connect(ui.B_AddRegatta, QtCore.SIGNAL("clicked()"), ui.ExecRegattaDialog)
 QtCore.QObject.connect(ui.L_Classi, QtCore.SIGNAL("itemSelectionChanged()"), ui.LoadClassRanking)
 QtCore.QObject.connect(ui.L_Regattas, QtCore.SIGNAL("itemSelectionChanged()"), ui.LoadRegattaRanking)
+QtCore.QObject.connect(ui.L_Regattas, QtCore.SIGNAL("itemClicked (QTableWidgetItem *)"), ui.CheckModified)
 QtCore.QObject.connect(ui.B_AddSkipper, QtCore.SIGNAL("clicked()"), ui.AddSkipper)
 QtCore.QObject.connect(ui.B_AddRace, QtCore.SIGNAL("clicked()"), ui.AddRace)
 QtCore.QObject.connect(ui.T_DetailRanking, QtCore.SIGNAL("itemSelectionChanged()"), ui.CheckRegatta)
@@ -483,6 +522,7 @@ QtCore.QObject.connect(ui.B_CancelClass, QtCore.SIGNAL("clicked()"), ui.CancelCl
 QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
 
 ui.LoadData()
+
 window.show()
 sys.exit(app.exec_())
 
