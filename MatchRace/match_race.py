@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.4
 
-import sys,copy, random, re, os
+import sys,copy, random, re, os, ConfigParser
+
 from reportlab.platypus import *
 from reportlab.lib.styles import PropertySet, getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
@@ -17,8 +18,17 @@ class MainWin(Ui_D_MainWin):
     
     matchRaceList = []
     skipperList = []
+    outputpath = ''
+    i18npath = ''
     ROWSKIPPER = 5
     
+    def __init__(self):
+        config = ConfigParser.ConfigParser()
+        config.readfp(open('match_race.cfg'))
+        self.ROWSKIPPER = config.get("export","ROWSKIPPER")
+        self.outputpath = self.outputpath+config.get("path","outputpath")
+        self.i18npath = self.i18npath+config.get("path","i18npath")
+        
     def AddSkipperToList(self):
         skipper =  self.T_SkipperName.text()
         if skipper == '':
@@ -342,8 +352,10 @@ class MainWin(Ui_D_MainWin):
         
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
-
 ui = MainWin()
+translator = QtCore.QTranslator()
+translator.load(QtCore.QString(ui.i18npath+'i18n_it'))
+QtGui.qApp.installTranslator(translator)
 ui.setupUi(window)
 
 # Custom signal connection
