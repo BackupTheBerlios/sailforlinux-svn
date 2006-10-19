@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Wed Sep  6 23:10:34 2006
+# Created: Thu Oct 19 12:54:10 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -112,11 +112,6 @@ class Ui_D_MainWin(object):
         self.T_MatchRaceList.setObjectName("T_MatchRaceList")
         self.vboxlayout2.addWidget(self.T_MatchRaceList)
 
-        self.vboxlayout3 = QtGui.QVBoxLayout()
-        self.vboxlayout3.setMargin(0)
-        self.vboxlayout3.setSpacing(6)
-        self.vboxlayout3.setObjectName("vboxlayout3")
-
         self.hboxlayout3 = QtGui.QHBoxLayout()
         self.hboxlayout3.setMargin(0)
         self.hboxlayout3.setSpacing(6)
@@ -129,42 +124,27 @@ class Ui_D_MainWin(object):
         self.B_Ranking = QtGui.QPushButton(self.groupBox_2)
         self.B_Ranking.setObjectName("B_Ranking")
         self.hboxlayout3.addWidget(self.B_Ranking)
-        self.vboxlayout3.addLayout(self.hboxlayout3)
+
+        self.B_Save = QtGui.QPushButton(self.groupBox_2)
+        self.B_Save.setObjectName("B_Save")
+        self.hboxlayout3.addWidget(self.B_Save)
+        self.vboxlayout2.addLayout(self.hboxlayout3)
+        self.hboxlayout.addWidget(self.groupBox_2)
+        self.vboxlayout.addLayout(self.hboxlayout)
 
         self.hboxlayout4 = QtGui.QHBoxLayout()
         self.hboxlayout4.setMargin(0)
         self.hboxlayout4.setSpacing(6)
         self.hboxlayout4.setObjectName("hboxlayout4")
 
-        self.E_FileName = QtGui.QLineEdit(self.groupBox_2)
-        self.E_FileName.setObjectName("E_FileName")
-        self.hboxlayout4.addWidget(self.E_FileName)
-
-        self.B_Save = QtGui.QPushButton(self.groupBox_2)
-        self.B_Save.setObjectName("B_Save")
-        self.hboxlayout4.addWidget(self.B_Save)
-        self.vboxlayout3.addLayout(self.hboxlayout4)
-        self.vboxlayout2.addLayout(self.vboxlayout3)
-
-        self.L_Status = QtGui.QLabel(self.groupBox_2)
-        self.L_Status.setObjectName("L_Status")
-        self.vboxlayout2.addWidget(self.L_Status)
-        self.hboxlayout.addWidget(self.groupBox_2)
-        self.vboxlayout.addLayout(self.hboxlayout)
-
-        self.hboxlayout5 = QtGui.QHBoxLayout()
-        self.hboxlayout5.setMargin(0)
-        self.hboxlayout5.setSpacing(6)
-        self.hboxlayout5.setObjectName("hboxlayout5")
-
         spacerItem1 = QtGui.QSpacerItem(300,31,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout5.addItem(spacerItem1)
+        self.hboxlayout4.addItem(spacerItem1)
 
         self.okButton = QtGui.QPushButton(D_MainWin)
         self.okButton.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.okButton.setObjectName("okButton")
-        self.hboxlayout5.addWidget(self.okButton)
-        self.vboxlayout.addLayout(self.hboxlayout5)
+        self.hboxlayout4.addWidget(self.okButton)
+        self.vboxlayout.addLayout(self.hboxlayout4)
 
         self.retranslateUi(D_MainWin)
         QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),D_MainWin.accept)

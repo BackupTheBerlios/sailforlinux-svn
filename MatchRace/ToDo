@@ -1,9 +1,7 @@
 [To finish]
 - input validation
 
-
 [Version 1]
-
 - add the data directory for output
 - improve the status bar usage
 - consider the possibility that two or more skippers finish with the same result: 
