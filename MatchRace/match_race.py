@@ -275,17 +275,20 @@ class MainWin(Ui_D_MainWin):
                 return
         self.SortRanking(SkipperList)
     
-    def CalcPartialRanking(self, x, y):
-#         try:
-#             sk1 = str(self.T_MatchRaceList.item(y,0).text())
-#             sk2 = str(self.T_MatchRaceList.item(y,1).text())
-#             skv = str(self.T_MatchRaceList.item(y,2).text())
-#             if skv != sk1 and skv != sk2 and skv != '':
-#                 msg = "The skipper %s is not in the current match"%(skv)
-#                 self.ShowWarning(msg)
-#                 return
-#         except:
-#             pass            
+    def CalcPartialRanking(self, y, x):
+
+        try:
+            sk1 = str(self.T_MatchRaceList.item(y,0).text())
+            sk2 = str(self.T_MatchRaceList.item(y,1).text())
+            skv = str(self.T_MatchRaceList.item(y,2).text())
+            if skv != sk1 and skv != sk2 and skv != '':
+                msg = "The skipper %s is not in the current match"%(skv)
+                self.ShowWarning(msg)
+                self.T_MatchRaceList.item(y,2).setText("")
+            return
+        except:
+            pass
+            
         SkipperList  = {}
         rows = self.T_SkipperList.rowCount() 
         for y in range(0,rows):
@@ -365,6 +368,7 @@ QtCore.QObject.connect(ui.B_DelSkipper, QtCore.SIGNAL("clicked()"), ui.DeleteSki
 QtCore.QObject.connect(ui.B_ClearSkipper, QtCore.SIGNAL("clicked()"), ui.ClearSkipper)
 QtCore.QObject.connect(ui.B_Ranking, QtCore.SIGNAL("clicked()"), ui.CalcRanking)
 QtCore.QObject.connect(ui.T_MatchRaceList, QtCore.SIGNAL("cellChanged(int,int)"), ui.CalcPartialRanking)
+
 
 
 window.show()

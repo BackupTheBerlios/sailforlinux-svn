@@ -1,13 +1,11 @@
 [To finish]
-- input validation
 
 [Version 1]
-- add the data directory for output
 - improve the status bar usage
 - consider the possibility that two or more skippers finish with the same result: 
   in this case there can be these solutions:
   * add a single run (and relative ranking) with two or more skippers
-  * consider only the direct match between the skippers
+  * consider the direct match between the skippers
  
 [Version 2]
 - add the delete button for the skipper
