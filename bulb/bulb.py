@@ -55,7 +55,6 @@ class RenderArea(QtGui.QWidget):
 
     def paintEvent(self, event):
         
-
         path = QtGui.QPainterPath()
         path.moveTo(0, 0)
         # per come ho capito, bisogna fare una cosa del tipo:
