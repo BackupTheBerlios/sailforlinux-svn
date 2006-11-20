@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Mon Nov 06 11:51:37 2006
+# Created: Mon Nov 20 23:38:39 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,15 +59,9 @@ class Ui_D_Naca(object):
         self.vboxlayout3.setSpacing(6)
         self.vboxlayout3.setObjectName("vboxlayout3")
 
-        self.listView = QtGui.QListView(self.groupBox)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(3),QtGui.QSizePolicy.Policy(7))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.listView.sizePolicy().hasHeightForWidth())
-        self.listView.setSizePolicy(sizePolicy)
-        self.listView.setObjectName("listView")
-        self.vboxlayout3.addWidget(self.listView)
+        self.L_ProfileList = QtGui.QListWidget(self.groupBox)
+        self.L_ProfileList.setObjectName("L_ProfileList")
+        self.vboxlayout3.addWidget(self.L_ProfileList)
         self.vboxlayout2.addWidget(self.groupBox)
 
         self.gridlayout = QtGui.QGridLayout()
@@ -75,17 +69,17 @@ class Ui_D_Naca(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
 
-        self.label_2 = QtGui.QLabel(D_Naca)
+        self.La_ProfileType = QtGui.QLabel(D_Naca)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
-        self.label_2.setFrameShape(QtGui.QFrame.Box)
-        self.label_2.setFrameShadow(QtGui.QFrame.Raised)
-        self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,0,1,1,1)
+        sizePolicy.setHeightForWidth(self.La_ProfileType.sizePolicy().hasHeightForWidth())
+        self.La_ProfileType.setSizePolicy(sizePolicy)
+        self.La_ProfileType.setFrameShape(QtGui.QFrame.Box)
+        self.La_ProfileType.setFrameShadow(QtGui.QFrame.Raised)
+        self.La_ProfileType.setObjectName("La_ProfileType")
+        self.gridlayout.addWidget(self.La_ProfileType,0,1,1,1)
 
         self.label = QtGui.QLabel(D_Naca)
         self.label.setObjectName("label")
@@ -95,17 +89,17 @@ class Ui_D_Naca(object):
         self.label_3.setObjectName("label_3")
         self.gridlayout.addWidget(self.label_3,1,0,1,1)
 
-        self.label_4 = QtGui.QLabel(D_Naca)
+        self.La_Radius = QtGui.QLabel(D_Naca)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy)
-        self.label_4.setFrameShape(QtGui.QFrame.Box)
-        self.label_4.setFrameShadow(QtGui.QFrame.Raised)
-        self.label_4.setObjectName("label_4")
-        self.gridlayout.addWidget(self.label_4,1,1,1,1)
+        sizePolicy.setHeightForWidth(self.La_Radius.sizePolicy().hasHeightForWidth())
+        self.La_Radius.setSizePolicy(sizePolicy)
+        self.La_Radius.setFrameShape(QtGui.QFrame.Box)
+        self.La_Radius.setFrameShadow(QtGui.QFrame.Raised)
+        self.La_Radius.setObjectName("La_Radius")
+        self.gridlayout.addWidget(self.La_Radius,1,1,1,1)
         self.vboxlayout2.addLayout(self.gridlayout)
         self.hboxlayout.addLayout(self.vboxlayout2)
 
@@ -123,15 +117,15 @@ class Ui_D_Naca(object):
         self.vboxlayout4.setSpacing(6)
         self.vboxlayout4.setObjectName("vboxlayout4")
 
-        self.tableView = QtGui.QTableView(self.groupBox_2)
+        self.T_CoordTable = QtGui.QTableView(self.groupBox_2)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.tableView.sizePolicy().hasHeightForWidth())
-        self.tableView.setSizePolicy(sizePolicy)
-        self.tableView.setObjectName("tableView")
-        self.vboxlayout4.addWidget(self.tableView)
+        sizePolicy.setHeightForWidth(self.T_CoordTable.sizePolicy().hasHeightForWidth())
+        self.T_CoordTable.setSizePolicy(sizePolicy)
+        self.T_CoordTable.setObjectName("T_CoordTable")
+        self.vboxlayout4.addWidget(self.T_CoordTable)
         self.hboxlayout.addWidget(self.groupBox_2)
 
         self.vboxlayout5 = QtGui.QVBoxLayout()
@@ -167,9 +161,9 @@ class Ui_D_Naca(object):
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.gridlayout1.addWidget(self.lineEdit_2,3,1,1,1)
 
-        self.checkBox = QtGui.QCheckBox(self.groupBox_3)
-        self.checkBox.setObjectName("checkBox")
-        self.gridlayout1.addWidget(self.checkBox,1,0,1,1)
+        self.CB_Scale = QtGui.QCheckBox(self.groupBox_3)
+        self.CB_Scale.setObjectName("CB_Scale")
+        self.gridlayout1.addWidget(self.CB_Scale,1,0,1,1)
 
         self.label_5 = QtGui.QLabel(self.groupBox_3)
 
@@ -201,9 +195,9 @@ class Ui_D_Naca(object):
         self.lineEdit.setObjectName("lineEdit")
         self.gridlayout1.addWidget(self.lineEdit,1,1,1,1)
 
-        self.checkBox_2 = QtGui.QCheckBox(self.groupBox_3)
-        self.checkBox_2.setObjectName("checkBox_2")
-        self.gridlayout1.addWidget(self.checkBox_2,3,0,1,1)
+        self.CB_Print = QtGui.QCheckBox(self.groupBox_3)
+        self.CB_Print.setObjectName("CB_Print")
+        self.gridlayout1.addWidget(self.CB_Print,3,0,1,1)
         self.vboxlayout5.addWidget(self.groupBox_3)
 
         self.groupBox_4 = QtGui.QGroupBox(D_Naca)
@@ -251,10 +245,10 @@ class Ui_D_Naca(object):
         self.label_3.setText(self.tr("Raggio del bordo d\'attacco"))
         self.groupBox_2.setTitle(self.tr("Coordinate delle curve del profilo"))
         self.groupBox_3.setTitle(self.tr("Opzioni"))
-        self.checkBox.setText(self.tr("Scala"))
+        self.CB_Scale.setText(self.tr("Scala"))
         self.label_5.setText(self.tr("Dimensioni corda in mm"))
         self.label_6.setText(self.tr("Unità di misura righello in mm"))
-        self.checkBox_2.setText(self.tr("Stampa righello"))
+        self.CB_Print.setText(self.tr("Stampa righello"))
         self.groupBox_4.setTitle(self.tr("Azioni"))
         self.B_Print.setText(self.tr("Stampa"))
         self.cancelButton.setText(self.tr("Quit"))

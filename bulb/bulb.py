@@ -61,13 +61,10 @@ class RenderArea(QtGui.QWidget):
         # cubicTo ([inizio], [primo punto],[secondopunto]) per la prima
         # poi cubicTo([punto_n-1],[punto_n],[punto_n+1]) per gli altri.
         #considerando la scala e l'offset
-        path.cubicTo(0, 0,40,50, 120,70)
+        path.cubicTo(0, 0, 40, 50, 120, 70)
+        path.cubicTo(120, 70, 130,75, 130, 80)
+        path.cubicTo(130,80, 135,78, 140,76)
         
-        path.cubicTo(120, 70,150, 80,400,0)
-        
-        #startAngle = 30 * 16
-        #arcLength = 120 * 16
-
         painter = QtGui.QPainter()
         painter.begin(self)
         painter.setPen(self.pen)
@@ -94,6 +91,16 @@ class MainWin(Ui_D_Naca):
     def __init__(self):
         self.ra = RenderArea()
         
+    def ProfileListLoad(self):
+        ProfileDataList = []
+        _ProfileDataList = os.listdir('./data')
+        try:
+            _ProfileDataList.remove('.svn')
+        except:
+            pass
+        for Prof in _ProfileDataList:
+            ProfileDataList.append(Prof[:-4])
+        self.L_ProfileList.addItems(ProfileDataList)
         
     def DrawTest(self):
         print "ciao"
@@ -109,6 +116,6 @@ ui.setupUi(window)
 ui.vboxlayout1.addWidget(ui.ra)
 
 QtCore.QObject.connect(ui.B_Print, QtCore.SIGNAL("clicked()"), ui.DrawTest)
-
+ui.ProfileListLoad()
 window.show()
 sys.exit(app.exec_()) 
