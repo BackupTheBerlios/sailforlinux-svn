@@ -104,6 +104,19 @@ class MainWin(Ui_D_Naca):
         
     def DrawTest(self):
         print "ciao"
+        
+        
+    def LoadProfile(self):
+        items = self.L_ProfileList.selectedItems()
+        self.L_ProfileList.setCurrentItem(items[0])
+        pos = self.L_ProfileList.currentRow()
+        current_profile = str(self.L_ProfileList.item(pos).text())
+        file = "./data/"+current_profile+".txt"
+        FI = open(file, 'r')
+        profile_data = FI.read()
+        FI.close
+        print profile_data
+
     
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
@@ -116,6 +129,9 @@ ui.setupUi(window)
 ui.vboxlayout1.addWidget(ui.ra)
 
 QtCore.QObject.connect(ui.B_Print, QtCore.SIGNAL("clicked()"), ui.DrawTest)
+
+QtCore.QObject.connect(ui.L_ProfileList, QtCore.SIGNAL("itemSelectionChanged()"), ui.LoadProfile)
+
 ui.ProfileListLoad()
 window.show()
 sys.exit(app.exec_()) 
