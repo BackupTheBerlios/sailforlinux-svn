@@ -119,6 +119,8 @@ class MainWin(Ui_DMainWin):
             file = self.outputpath+re.sub(' ','_',str(Data))+".cla"
             try:
                 FO = open(file, "w")
+                msg = '[ranking]\n\n[result]'
+                FO.write(msg)
                 FO.close()
                 self.L_Regattas.addItem(Data)
             except:
@@ -216,7 +218,9 @@ class MainWin(Ui_DMainWin):
             x = 0
             TableHeader = ["Skipper"]
             points = {}
-            Ranks = {}            
+            Ranks = {}  
+            risultati = datafile.options('result')
+            if len(risultati) == 0: return
             for sk in datafile.options('result'):
                 _pt = datafile.get('result', sk)
                 pt = _pt.split(',')
@@ -229,11 +233,13 @@ class MainWin(Ui_DMainWin):
                         tot = tot + int(p)
                 Ranks[sk].append(str(tot))
                 points[sk] = tot
+            
             it = points.items()
             it = [(v, k) for (k, v) in it]
             it.sort()
             it = [(k, v) for (v, k) in it]
-            for c in range(0,len(Ranks[sk])):
+            lenRanks = len(Ranks[sk])
+            for c in range(0,lenRanks):
                 self.T_DetailRanking.insertColumn(c+1)
                 TableHeader.append("%s %d"%(Header,(c+1)))
             TableHeader.remove(TableHeader[len(TableHeader)-1])
@@ -283,10 +289,14 @@ class MainWin(Ui_DMainWin):
         self.T_DetailRanking.insertRow(self.T_DetailRanking.rowCount())
         
     def AddRace(self):
-        self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount()-1)
         cols = self.T_DetailRanking.columnCount()
+        pos = cols - 1
+        if cols == 1:
+            pos = 1
+        self.T_DetailRanking.insertColumn(pos)
+        cols +=1
         if cols == 2:
-            self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount()-1)
+            self.T_DetailRanking.insertColumn(self.T_DetailRanking.columnCount() -1)
             cols += 1
         TableHeader=[]
         for c in range(0, cols -1):
