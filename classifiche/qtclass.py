@@ -480,8 +480,10 @@ class MainWin(Ui_DMainWin):
     
     def ChechForSkipper(self, value, pos):
         for s in range(0, self.T_DetailRanking.rowCount()):
-            if str(value) == str(self.T_DetailRanking.item(s, 0).text()) and s != pos:
-                return 0
+            if self.T_DetailRanking.item(s, 0):
+                newVal = self.T_DetailRanking.item(s, 0).text()
+                if str(value) == str(newVal) and s != pos:
+                    return 0
             
     def CheckModified(self):
         pass
