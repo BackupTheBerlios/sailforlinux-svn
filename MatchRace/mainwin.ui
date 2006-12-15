@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>D_MainWin</class>
  <widget class="QDialog" name="D_MainWin" >
   <property name="geometry" >
@@ -55,6 +52,12 @@
         </property>
         <item>
          <widget class="QTableWidget" name="T_SkipperList" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::DoubleClicked</set>
+          </property>
           <column>
            <property name="text" >
             <string>Skipper</string>
@@ -273,7 +276,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
  <tabstops>
   <tabstop>T_SkipperName</tabstop>
   <tabstop>B_AddSkipper</tabstop>

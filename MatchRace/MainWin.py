@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Thu Oct 19 12:54:10 2006
+# Created: Sat Dec 16 00:29:10 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -44,6 +44,8 @@ class Ui_D_MainWin(object):
         self.vboxlayout1.setObjectName("vboxlayout1")
 
         self.T_SkipperList = QtGui.QTableWidget(self.groupBox)
+        self.T_SkipperList.setEnabled(True)
+        self.T_SkipperList.setEditTriggers(QtGui.QAbstractItemView.DoubleClicked)
         self.T_SkipperList.setObjectName("T_SkipperList")
         self.vboxlayout1.addWidget(self.T_SkipperList)
 

@@ -260,12 +260,12 @@ class MainWin(Ui_D_MainWin):
 
     def CalcRanking(self):
         SkipperList  = {}
-        rows = self.T_SkipperList.rowCount() 
-        for y in range(0,rows):
+        skipper_rows = self.T_SkipperList.rowCount() 
+        for y in range(0,skipper_rows):
             sk = self.T_SkipperList.item(y,0).text()
             SkipperList[str(sk)] = 0
-        rows = self.T_MatchRaceList.rowCount()
-        for y in range(0,rows):
+        race_rows = self.T_MatchRaceList.rowCount()
+        for y in range(0,race_rows):
             try:
                 v = str(self.T_MatchRaceList.item(y,2).text())
                 SkipperList[v] = SkipperList[v] + 1
