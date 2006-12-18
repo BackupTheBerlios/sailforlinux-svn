@@ -516,7 +516,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton" >
+      <widget class="QPushButton" name="B_Quit" >
        <property name="text" >
         <string>Quit</string>
        </property>
@@ -528,22 +528,5 @@
  </widget>
  <pixmapfunction></pixmapfunction>
  <resources/>
- <connections>
-  <connection>
-   <sender>okButton</sender>
-   <signal>clicked()</signal>
-   <receiver>DMainWin</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>903</x>
-     <y>802</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>618</x>
-     <y>459</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'unknown'
 #
-# Created: Fri Sep 29 17:53:06 2006
+# Created: Mon Dec 18 16:50:09 2006
 #      by: PyQt4 UI code generator 4.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -263,14 +263,13 @@ class Ui_DMainWin(object):
         spacerItem8 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout8.addItem(spacerItem8)
 
-        self.okButton = QtGui.QPushButton(DMainWin)
-        self.okButton.setObjectName("okButton")
-        self.hboxlayout8.addWidget(self.okButton)
+        self.B_Quit = QtGui.QPushButton(DMainWin)
+        self.B_Quit.setObjectName("B_Quit")
+        self.hboxlayout8.addWidget(self.B_Quit)
         self.vboxlayout.addLayout(self.hboxlayout8)
 
         self.retranslateUi(DMainWin)
         self.L_Classi.setCurrentRow(-1)
-        QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),DMainWin.accept)
         QtCore.QMetaObject.connectSlotsByName(DMainWin)
 
     def tr(self, string):
@@ -311,4 +310,4 @@ class Ui_DMainWin(object):
         self.B_DeleteRace.setText(self.tr("Delete Race"))
         self.B_CalcRanking.setText(self.tr("Update Ranking"))
         self.B_Legenda.setText(self.tr("Legenda"))
-        self.okButton.setText(self.tr("Quit"))
+        self.B_Quit.setText(self.tr("Quit"))

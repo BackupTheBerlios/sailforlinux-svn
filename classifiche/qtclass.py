@@ -13,7 +13,10 @@ from RegattaDialog import Ui_RegattaDialog
 from LegendaDialog import Ui_LegendaDialog
 from export import Export
 
-
+class AppStatus:
+    def __init__(self):
+        self.modified_regatta = 0
+        self.mod_reg_list = []
 
 class MainWin(Ui_DMainWin):
     
@@ -33,6 +36,7 @@ class MainWin(Ui_DMainWin):
         self.outputpath = self.exepath+config.get("path","outputpath")
         self.DNF = int(config.get("points", "DNF"))
         self.i18npath = self.i18npath+config.get("path","i18npath")
+        self.status = AppStatus()
         
     def LoadData(self):
         try:
@@ -300,7 +304,7 @@ class MainWin(Ui_DMainWin):
             cols += 1
         TableHeader=[]
         for c in range(0, cols -1):
-            TableHeader.append("%s %d"%("Race",(c)))
+            TableHeader.append("%s %d"%(self.tr("Race"),(c)))
         TableHeader[0] = "Skipper"
         TableHeader.append("Tot")
         self.T_DetailRanking.setHorizontalHeaderLabels(TableHeader)  
@@ -379,6 +383,7 @@ class MainWin(Ui_DMainWin):
     def UpdateRegattaRanking(self):
         rows = self.T_DetailRanking.rowCount()
         cols = self.T_DetailRanking.columnCount()
+        self.UpdateRegattaHeader()
         for row in range(0,rows):
             tot = 0
             for col in range(1, cols-1):
@@ -389,7 +394,15 @@ class MainWin(Ui_DMainWin):
             tot = QtGui.QTableWidgetItem(str(tot))
             self.T_DetailRanking.setItem(row,col+1,tot)
             
-    
+    def UpdateRegattaHeader(self):
+        cols = self.T_DetailRanking.columnCount()
+        TableHeader = [self.tr("Skipper")]
+        Header = self.tr("Race")
+        for x in range (0,cols -2):
+            TableHeader.append(self.tr("Race")+str(x+1))
+        TableHeader.append(self.tr("Tot"))
+        self.T_DetailRanking.setHorizontalHeaderLabels(TableHeader)     
+
     def CancelRace(self):
         x = self.T_DetailRanking.currentColumn()
         # Check if is the column of the totals
@@ -397,6 +410,7 @@ class MainWin(Ui_DMainWin):
             self.ShowWarningDialog("You cannot delete the total.")
             return
         self.T_DetailRanking.removeColumn(x)
+        self.UpdateRegattaHeader()
         
     def CancelSkipper(self):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
@@ -451,6 +465,8 @@ class MainWin(Ui_DMainWin):
         self.WriteClasses()
     
     def CancelRegatta(self):
+        # Delete a regatta
+        # return nothing
         row = self.L_Regattas.currentRow()
         i = self.L_Regattas.takeItem(row)
         current_reg=i.text()
@@ -463,6 +479,8 @@ class MainWin(Ui_DMainWin):
             return
         if self.L_Regattas.currentItem().text()[-1:] != '*':           
             self.L_Regattas.currentItem().setText(self.L_Regattas.currentItem().text()+"*")            
+            self.status.modified_regatta = 1
+            self.status.mod_reg_list.append(str(self.L_Regattas.currentItem().text()))
         if self.T_DetailRanking.currentColumn() == 0:
             if self.ChechForSkipper(self.T_DetailRanking.currentItem().text(),self.T_DetailRanking.currentRow() ) == 0:
                 self.ShowErrorDialog("Skipper must be unique")
@@ -501,7 +519,13 @@ class MainWin(Ui_DMainWin):
         return ok            
     # End of Class
 
-
+    def Quit(self):
+        if self.status.modified_regatta == 1:
+            current_class = self.status.mod_reg_list[0]
+            k = self.ShowQuestionDialog("Save data ?")
+            if k == QtGui.QMessageBox.Yes:
+                self.SaveRankingData(Regatta=current_class)
+        app.quit()
 
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
@@ -532,6 +556,7 @@ QtCore.QObject.connect(ui.B_ExportClassRank, QtCore.SIGNAL("clicked()"), ui.Expo
 QtCore.QObject.connect(ui.B_ExportRegattaRank, QtCore.SIGNAL("clicked()"), ui.ExportRegattaRank)
 QtCore.QObject.connect(ui.B_CancelClass, QtCore.SIGNAL("clicked()"), ui.CancelClass)
 QtCore.QObject.connect(ui.B_CancelRegatta, QtCore.SIGNAL("clicked()"), ui.CancelRegatta)
+QtCore.QObject.connect(ui.B_Quit, QtCore.SIGNAL("clicked()"), ui.Quit)
 
 ui.LoadData()
 
