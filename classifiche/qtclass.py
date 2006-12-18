@@ -37,6 +37,7 @@ class MainWin(Ui_DMainWin):
         self.DNF = int(config.get("points", "DNF"))
         self.i18npath = self.i18npath+config.get("path","i18npath")
         self.status = AppStatus()
+        self.lang = config.get("misc", "lang")
         
     def LoadData(self):
         try:
@@ -316,7 +317,7 @@ class MainWin(Ui_DMainWin):
         datafile.add_section('result')
         if Regatta == None:
             if self.L_Regattas.currentItem() == None:
-                self.ShowWarningDialog("Please select a regatta.\n")
+                self.ShowWarningDialog(self.tr("Please select a regatta."))
                 return
             current_regatta = self.L_Regattas.currentItem().text()
         else:
@@ -355,7 +356,7 @@ class MainWin(Ui_DMainWin):
             
     def CheckRegatta(self):
         if self.L_Regattas.currentItem() == None:
-            self.ShowWarningDialog("Please select a regatta.\n")
+            self.ShowWarningDialog(self.tr("Please select a regatta."))
             return
             
     def ShowMessageDialog(self, msg):
@@ -407,7 +408,7 @@ class MainWin(Ui_DMainWin):
         x = self.T_DetailRanking.currentColumn()
         # Check if is the column of the totals
         if x == self.T_DetailRanking.columnCount() - 1:
-            self.ShowWarningDialog("You cannot delete the total.")
+            self.ShowWarningDialog(self.tr("You cannot delete the total."))
             return
         self.T_DetailRanking.removeColumn(x)
         self.UpdateRegattaHeader()
@@ -417,12 +418,12 @@ class MainWin(Ui_DMainWin):
         
     def ExportRanking(self, DataType, DataSource):
         if DataType.currentItem() == None:
-            self.ShowWarningDialog("Please select a regatta.\n")
+            self.ShowWarningDialog(self.tr("Please select a regatta."))
             return
         regatta = DataType.currentItem().text()
         
         fileType = QtCore.QString("pdf *.pdf")
-        fileName = QtGui.QFileDialog.getSaveFileName(None,"Save As...",
+        fileName = QtGui.QFileDialog.getSaveFileName(None,self.tr("Save As..."),
                                                             "./export",
                                                             "pdf (*.pdf);;html (*.html);;blg (*.blg)",
                                                             fileType
@@ -531,7 +532,7 @@ app = QtGui.QApplication(sys.argv)
 window = QtGui.QDialog()
 ui = MainWin()
 translator = QtCore.QTranslator()
-translator.load(QtCore.QString(ui.i18npath+'i18n_it'))
+translator.load(QtCore.QString(ui.i18npath+'i18n_'+ui.lang))
 QtGui.qApp.installTranslator(translator)
 ui.setupUi(window)  
 
