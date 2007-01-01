@@ -17,7 +17,22 @@ class AppStatus:
     def __init__(self):
         self.modified_regatta = 0
         self.mod_reg_list = []
-
+        
+    def AddRegatta(self,reg):
+        self.mod_reg_list.append(str(reg.text()))
+        reg.setText(reg.text()+"*")            
+        self.modified_regatta = 1
+    
+    def RemoveRegatta(self,reg):
+        try:
+            self.mod_reg_list.remove(str(reg.text()))
+            self.setText(str(reg.text())[:-1])
+        except:
+            pass
+            # FIX - Handle the error
+        if len(self.mod_reg_list) == 0:
+                self.modified_regatta = 0
+        
 class MainWin(Ui_DMainWin):
     
     inputpath = ''
@@ -320,12 +335,13 @@ class MainWin(Ui_DMainWin):
                 self.ShowWarningDialog(self.tr("Please select a regatta."))
                 return
             current_regatta = self.L_Regattas.currentItem().text()
+            current_regatta = current_regatta[:-1]
         else:
             current_regatta = Regatta[:-1]
         self.L_Regattas.currentItem().setText(current_regatta)
-        fname = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
+        fname_ = self.outputpath+re.sub(' ','_',str(current_regatta))+".cla"
+        fname = re.sub('\*','',fname_)
         FO = open(fname, "w")
-        datafile.readfp(FO)
         rows = self.T_DetailRanking.rowCount()
         cols = self.T_DetailRanking.columnCount()
         for row in range (0, rows):
@@ -352,6 +368,8 @@ class MainWin(Ui_DMainWin):
             c += 1
         datafile.write(FO)
         FO.close()
+        self.L_Regattas.currentItem().setText(current_regatta)
+        self.status.RemoveRegatta(self.L_Regattas.currentItem())
         self.ShowMessageDialog("File %s saved"%fname)
             
     def CheckRegatta(self):
@@ -411,10 +429,12 @@ class MainWin(Ui_DMainWin):
             self.ShowWarningDialog(self.tr("You cannot delete the total."))
             return
         self.T_DetailRanking.removeColumn(x)
+        self.status.AddRegatta(self.L_Regattas.currentItem())
         self.UpdateRegattaHeader()
         
     def CancelSkipper(self):
         self.T_DetailRanking.removeRow(self.T_DetailRanking.currentRow())
+        self.status.AddRegatta(self.L_Regattas.currentItem())
         
     def ExportRanking(self, DataType, DataSource):
         if DataType.currentItem() == None:
@@ -478,10 +498,8 @@ class MainWin(Ui_DMainWin):
     def CheckData(self):
         if self.T_DetailRanking.currentItem() == None:
             return
-        if self.L_Regattas.currentItem().text()[-1:] != '*':           
-            self.L_Regattas.currentItem().setText(self.L_Regattas.currentItem().text()+"*")            
-            self.status.modified_regatta = 1
-            self.status.mod_reg_list.append(str(self.L_Regattas.currentItem().text()))
+        if self.L_Regattas.currentItem().text()[-1:] != '*':
+            self.status.AddRegatta(self.L_Regattas.currentItem())
         if self.T_DetailRanking.currentColumn() == 0:
             if self.ChechForSkipper(self.T_DetailRanking.currentItem().text(),self.T_DetailRanking.currentRow() ) == 0:
                 self.ShowErrorDialog("Skipper must be unique")

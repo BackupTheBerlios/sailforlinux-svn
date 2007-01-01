@@ -57,7 +57,7 @@ class Export:
         
     def ExportAsHTML(self, DataGrid, FileName, Regatta):     
         data = self.ExtractData(DataGrid)
-        table = self.BuildHtmlTable(data)
+        table = self.BuildHtmlTable(data, "html")
         page = "<html>\n"
         (race, classe) = self.ExtractRegattaInfo(Regatta)
         page += "<head><title>Classifica '%s' classe %s</title></head>\n"%(race , classe)
@@ -72,15 +72,17 @@ class Export:
         
     def ExportAsBLG(self, DataGrid, FileName, Regatta):
         data = self.ExtractData(DataGrid)
-        table = self.BuildHtmlTable(data) 
+        table = self.BuildHtmlTable(data, "blg") 
         FO = open(FileName, "w+")
         FO.write(table)
         FO.close() 
-
- 
         
-    def BuildHtmlTable(self, DataSource):
-        result = "<table border='1' cellspacing='0' cellpadding='10'>"
+        
+    def BuildHtmlTable(self, DataSource,exp):
+        if exp == "html":
+            result = "<table border='1' cellspacing='0' cellpadding='5'>"
+        if exp == "blg":
+            result = ""
         for col in DataSource[0]:
             result += "<th>%s</th>"%col
         result += "\n"
