@@ -3,7 +3,8 @@ import sys,copy, random, re, os, ConfigParser
 from PyQt4 import QtGui, QtCore, uic, Qt
 
 from MainWin import Ui_D_Naca
-
+sys.path.append('./libs')
+import sdxf
 class RenderArea(QtGui.QWidget):
     points = QtGui.QPolygon([
         QtCore.QPoint(0, 15),
