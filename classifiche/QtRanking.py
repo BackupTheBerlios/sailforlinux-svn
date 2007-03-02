@@ -2,6 +2,7 @@
 
 # system include
 import sys, os, re, string, ConfigParser
+sys.path.append('modules')
 
 # PyQt4 include
 from PyQt4 import QtGui, QtCore

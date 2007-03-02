@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'class_dialog.ui'
+# Form implementation generated from reading ui file 'gui/class_dialog.ui'
 #
-# Created: Fri Mar  2 22:45:53 2007
+# Created: Fri Mar  2 23:43:08 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
