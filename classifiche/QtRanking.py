@@ -12,12 +12,11 @@ from MainWindow import Ui_MainWindow
 
 #QtRanking Include
 from QtRankingIO import *
-
+from QtExport import *
 
 class MainWindow(Ui_MainWindow):
     def __init__(self):
         pass
-    
     
 
     
@@ -28,7 +27,8 @@ ui = MainWindow()
 #translator.load(QtCore.QString(ui.i18npath+'i18n_'+ui.lang))
 #QtGui.qApp.installTranslator(translator)
 ui.setupUi(window)  
-#ui.LoadData()
+QtRankIO = QtRankingIO()
+QtRankIO.LoadData(ui)
 
 window.show()
 sys.exit(app.exec_())

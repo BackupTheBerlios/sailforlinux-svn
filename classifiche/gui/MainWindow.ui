@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>MainWindow</string>
+   <string>QtRanking</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
@@ -36,7 +36,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="CB_Classi" />
+       <widget class="QComboBox" name="CB_Classes" />
       </item>
       <item>
        <widget class="QLabel" name="label_2" >

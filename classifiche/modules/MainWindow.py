@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/MainWindow.ui'
 #
-# Created: Fri Mar  2 23:43:08 2007
+# Created: Fri Mar  2 23:56:42 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -32,9 +32,9 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.vboxlayout.addWidget(self.label)
 
-        self.CB_Classi = QtGui.QComboBox(self.centralwidget)
-        self.CB_Classi.setObjectName("CB_Classi")
-        self.vboxlayout.addWidget(self.CB_Classi)
+        self.CB_Classes = QtGui.QComboBox(self.centralwidget)
+        self.CB_Classes.setObjectName("CB_Classes")
+        self.vboxlayout.addWidget(self.CB_Classes)
 
         self.label_2 = QtGui.QLabel(self.centralwidget)
         self.label_2.setObjectName("label_2")
@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "QtRanking", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Classes", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Regatta", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("MainWindow", "General Ranking", None, QtGui.QApplication.UnicodeUTF8))
