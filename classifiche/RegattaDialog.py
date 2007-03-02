@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'unknown'
+# Form implementation generated from reading ui file 'regatta_dialog.ui'
 #
-# Created: Mon Dec 18 16:50:10 2006
-#      by: PyQt4 UI code generator 4.0
+# Created: Fri Mar  2 22:45:54 2007
+#      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -67,12 +67,10 @@ class Ui_RegattaDialog(object):
         QtCore.QObject.connect(self.cancelButton,QtCore.SIGNAL("clicked()"),RegattaDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(RegattaDialog)
 
-    def tr(self, string):
-        return QtGui.QApplication.translate("RegattaDialog", string, None, QtGui.QApplication.UnicodeUTF8)
-
     def retranslateUi(self, RegattaDialog):
-        RegattaDialog.setWindowTitle(self.tr("Regatta"))
-        self.label_3.setText(self.tr("Class"))
-        self.label.setText(self.tr("Insert new regatta"))
-        self.okButton.setText(self.tr("OK"))
-        self.cancelButton.setText(self.tr("Cancel"))
+        RegattaDialog.setWindowTitle(QtGui.QApplication.translate("RegattaDialog", "Regatta", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("RegattaDialog", "Class", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("RegattaDialog", "Insert new regatta", None, QtGui.QApplication.UnicodeUTF8))
+        self.okButton.setText(QtGui.QApplication.translate("RegattaDialog", "OK", None, QtGui.QApplication.UnicodeUTF8))
+        self.cancelButton.setText(QtGui.QApplication.translate("RegattaDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+

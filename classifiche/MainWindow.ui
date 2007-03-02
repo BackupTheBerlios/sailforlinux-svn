@@ -1,0 +1,221 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>934</width>
+    <height>731</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Classes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="CB_Classi" />
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Regatta</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="CB_Regattas" />
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab" >
+       <attribute name="title" >
+        <string>General Ranking</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_2" >
+       <attribute name="title" >
+        <string>Detail ranking</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>934</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <addaction name="actionNew" />
+    <addaction name="actionOpen" />
+    <addaction name="actionSave" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuClasses" >
+    <property name="title" >
+     <string>Classes</string>
+    </property>
+    <addaction name="actionAdd" />
+    <addaction name="actionDelete" />
+   </widget>
+   <widget class="QMenu" name="menuRegattas" >
+    <property name="title" >
+     <string>Regattas</string>
+    </property>
+    <addaction name="actionAdd_2" />
+    <addaction name="actionDelete_2" />
+   </widget>
+   <widget class="QMenu" name="menuRanking" >
+    <property name="title" >
+     <string>Ranking</string>
+    </property>
+    <addaction name="actionNew_2" />
+    <addaction name="actionEdit" />
+    <addaction name="actionDelete_3" />
+   </widget>
+   <widget class="QMenu" name="menuExport" >
+    <property name="title" >
+     <string>Export</string>
+    </property>
+    <addaction name="actionGeneral_Ranking" />
+    <addaction name="actionDetail_Ranking" />
+    <addaction name="separator" />
+    <addaction name="actionPrint_General_Ranking" />
+    <addaction name="actionPrint_Detail_Ranking" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuClasses" />
+   <addaction name="menuRegattas" />
+   <addaction name="menuRanking" />
+   <addaction name="menuExport" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionOpen" >
+   <property name="text" >
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave" >
+   <property name="text" >
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionNew" >
+   <property name="text" >
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAdd" >
+   <property name="text" >
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionDelete" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionAdd_2" >
+   <property name="text" >
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionDelete_2" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionNew_2" >
+   <property name="text" >
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionEdit" >
+   <property name="text" >
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionDelete_3" >
+   <property name="text" >
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionGeneral_Ranking" >
+   <property name="text" >
+    <string>General Ranking</string>
+   </property>
+  </action>
+  <action name="actionDetail_Ranking" >
+   <property name="text" >
+    <string>Detail Ranking</string>
+   </property>
+  </action>
+  <action name="actionPrint_General_Ranking" >
+   <property name="text" >
+    <string>Print General Ranking</string>
+   </property>
+  </action>
+  <action name="actionPrint_Detail_Ranking" >
+   <property name="text" >
+    <string>Print Detail Ranking</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

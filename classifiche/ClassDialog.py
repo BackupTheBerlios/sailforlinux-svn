@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'unknown'
+# Form implementation generated from reading ui file 'class_dialog.ui'
 #
-# Created: Mon Dec 18 16:50:10 2006
-#      by: PyQt4 UI code generator 4.0
+# Created: Fri Mar  2 22:45:53 2007
+#      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -71,11 +71,9 @@ class Ui_ClassDialog(object):
         QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),ClassDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(ClassDialog)
 
-    def tr(self, string):
-        return QtGui.QApplication.translate("ClassDialog", string, None, QtGui.QApplication.UnicodeUTF8)
-
     def retranslateUi(self, ClassDialog):
-        ClassDialog.setWindowTitle(self.tr("Class"))
-        self.label.setText(self.tr("Insert new class"))
-        self.okButton.setText(self.tr("OK"))
-        self.cancelButton.setText(self.tr("Cancel"))
+        ClassDialog.setWindowTitle(QtGui.QApplication.translate("ClassDialog", "Class", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("ClassDialog", "Insert new class", None, QtGui.QApplication.UnicodeUTF8))
+        self.okButton.setText(QtGui.QApplication.translate("ClassDialog", "OK", None, QtGui.QApplication.UnicodeUTF8))
+        self.cancelButton.setText(QtGui.QApplication.translate("ClassDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+

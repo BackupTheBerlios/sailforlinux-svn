@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'unknown'
+# Form implementation generated from reading ui file 'main_win.ui'
 #
-# Created: Mon Dec 18 16:50:09 2006
-#      by: PyQt4 UI code generator 4.0
+# Created: Fri Mar  2 22:45:52 2007
+#      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -272,42 +272,40 @@ class Ui_DMainWin(object):
         self.L_Classi.setCurrentRow(-1)
         QtCore.QMetaObject.connectSlotsByName(DMainWin)
 
-    def tr(self, string):
-        return QtGui.QApplication.translate("DMainWin", string, None, QtGui.QApplication.UnicodeUTF8)
-
     def retranslateUi(self, DMainWin):
-        DMainWin.setWindowTitle(self.tr("QtRank"))
-        self.groupBox.setTitle(self.tr("Classes"))
-        self.B_AddClass.setText(self.tr("Add"))
-        self.B_CancelClass.setText(self.tr("Cancel"))
-        self.B_ExportClassRank.setText(self.tr("Export Ranking"))
-        self.groupBox_2.setTitle(self.tr("Regattas"))
-        self.B_AddRegatta.setText(self.tr("Add"))
-        self.B_CancelRegatta.setText(self.tr("Cancel"))
-        self.B_SaveRegattaRank.setText(self.tr("Save Data"))
-        self.B_ExportRegattaRank.setText(self.tr("Export Ranking"))
-        self.groupBox_3.setTitle(self.tr("General ranking"))
+        DMainWin.setWindowTitle(QtGui.QApplication.translate("DMainWin", "QtRank", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("DMainWin", "Classes", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_AddClass.setText(QtGui.QApplication.translate("DMainWin", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_CancelClass.setText(QtGui.QApplication.translate("DMainWin", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_ExportClassRank.setText(QtGui.QApplication.translate("DMainWin", "Export Ranking", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("DMainWin", "Regattas", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_AddRegatta.setText(QtGui.QApplication.translate("DMainWin", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_CancelRegatta.setText(QtGui.QApplication.translate("DMainWin", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_SaveRegattaRank.setText(QtGui.QApplication.translate("DMainWin", "Save Data", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_ExportRegattaRank.setText(QtGui.QApplication.translate("DMainWin", "Export Ranking", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_3.setTitle(QtGui.QApplication.translate("DMainWin", "General ranking", None, QtGui.QApplication.UnicodeUTF8))
         self.T_GeneralRanking.setColumnCount(1)
         self.T_GeneralRanking.clear()
         self.T_GeneralRanking.setColumnCount(1)
         self.T_GeneralRanking.setRowCount(0)
 
         headerItem = QtGui.QTableWidgetItem()
-        headerItem.setText(self.tr("Skipper"))
+        headerItem.setText(QtGui.QApplication.translate("DMainWin", "Skipper", None, QtGui.QApplication.UnicodeUTF8))
         self.T_GeneralRanking.setHorizontalHeaderItem(0,headerItem)
-        self.groupBox_4.setTitle(self.tr("Detail Ranking"))
+        self.groupBox_4.setTitle(QtGui.QApplication.translate("DMainWin", "Detail Ranking", None, QtGui.QApplication.UnicodeUTF8))
         self.T_DetailRanking.setColumnCount(1)
         self.T_DetailRanking.clear()
         self.T_DetailRanking.setColumnCount(1)
         self.T_DetailRanking.setRowCount(0)
 
         headerItem1 = QtGui.QTableWidgetItem()
-        headerItem1.setText(self.tr("Skipper"))
+        headerItem1.setText(QtGui.QApplication.translate("DMainWin", "Skipper", None, QtGui.QApplication.UnicodeUTF8))
         self.T_DetailRanking.setHorizontalHeaderItem(0,headerItem1)
-        self.B_AddSkipper.setText(self.tr("Add Skipper"))
-        self.B_DeleteSkipper.setText(self.tr("Delete Skipper"))
-        self.B_AddRace.setText(self.tr("Add Race"))
-        self.B_DeleteRace.setText(self.tr("Delete Race"))
-        self.B_CalcRanking.setText(self.tr("Update Ranking"))
-        self.B_Legenda.setText(self.tr("Legenda"))
-        self.B_Quit.setText(self.tr("Quit"))
+        self.B_AddSkipper.setText(QtGui.QApplication.translate("DMainWin", "Add Skipper", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_DeleteSkipper.setText(QtGui.QApplication.translate("DMainWin", "Delete Skipper", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_AddRace.setText(QtGui.QApplication.translate("DMainWin", "Add Race", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_DeleteRace.setText(QtGui.QApplication.translate("DMainWin", "Delete Race", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_CalcRanking.setText(QtGui.QApplication.translate("DMainWin", "Update Ranking", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_Legenda.setText(QtGui.QApplication.translate("DMainWin", "Legenda", None, QtGui.QApplication.UnicodeUTF8))
+        self.B_Quit.setText(QtGui.QApplication.translate("DMainWin", "Quit", None, QtGui.QApplication.UnicodeUTF8))
+

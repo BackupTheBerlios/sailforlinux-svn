@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'unknown'
+# Form implementation generated from reading ui file 'legenda_dialog.ui'
 #
-# Created: Mon Dec 18 16:50:10 2006
-#      by: PyQt4 UI code generator 4.0
+# Created: Fri Mar  2 22:45:54 2007
+#      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -41,20 +41,18 @@ class Ui_LegendaDialog(object):
         QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),LegendaDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(LegendaDialog)
 
-    def tr(self, string):
-        return QtGui.QApplication.translate("LegendaDialog", string, None, QtGui.QApplication.UnicodeUTF8)
-
     def retranslateUi(self, LegendaDialog):
-        LegendaDialog.setWindowTitle(self.tr("Dialog"))
+        LegendaDialog.setWindowTitle(QtGui.QApplication.translate("LegendaDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.T_Legenda.clear()
         self.T_Legenda.setColumnCount(2)
         self.T_Legenda.setRowCount(0)
 
         headerItem = QtGui.QTableWidgetItem()
-        headerItem.setText(self.tr("Key"))
+        headerItem.setText(QtGui.QApplication.translate("LegendaDialog", "Key", None, QtGui.QApplication.UnicodeUTF8))
         self.T_Legenda.setHorizontalHeaderItem(0,headerItem)
 
         headerItem1 = QtGui.QTableWidgetItem()
-        headerItem1.setText(self.tr("Value"))
+        headerItem1.setText(QtGui.QApplication.translate("LegendaDialog", "Value", None, QtGui.QApplication.UnicodeUTF8))
         self.T_Legenda.setHorizontalHeaderItem(1,headerItem1)
-        self.okButton.setText(self.tr("OK"))
+        self.okButton.setText(QtGui.QApplication.translate("LegendaDialog", "OK", None, QtGui.QApplication.UnicodeUTF8))
+
