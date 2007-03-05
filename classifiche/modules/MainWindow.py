@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/MainWindow.ui'
 #
-# Created: Fri Mar  2 23:56:42 2007
+# Created: Sun Mar  4 01:09:42 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,47 +18,96 @@ class Ui_MainWindow(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.hboxlayout = QtGui.QHBoxLayout(self.centralwidget)
-        self.hboxlayout.setMargin(9)
-        self.hboxlayout.setSpacing(6)
-        self.hboxlayout.setObjectName("hboxlayout")
-
-        self.vboxlayout = QtGui.QVBoxLayout()
-        self.vboxlayout.setMargin(0)
+        self.vboxlayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
-
-        self.label = QtGui.QLabel(self.centralwidget)
-        self.label.setObjectName("label")
-        self.vboxlayout.addWidget(self.label)
-
-        self.CB_Classes = QtGui.QComboBox(self.centralwidget)
-        self.CB_Classes.setObjectName("CB_Classes")
-        self.vboxlayout.addWidget(self.CB_Classes)
-
-        self.label_2 = QtGui.QLabel(self.centralwidget)
-        self.label_2.setObjectName("label_2")
-        self.vboxlayout.addWidget(self.label_2)
-
-        self.CB_Regattas = QtGui.QComboBox(self.centralwidget)
-        self.CB_Regattas.setObjectName("CB_Regattas")
-        self.vboxlayout.addWidget(self.CB_Regattas)
-
-        spacerItem = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.vboxlayout.addItem(spacerItem)
-        self.hboxlayout.addLayout(self.vboxlayout)
 
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName("tabWidget")
 
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
+
+        self.vboxlayout1 = QtGui.QVBoxLayout(self.tab)
+        self.vboxlayout1.setMargin(9)
+        self.vboxlayout1.setSpacing(6)
+        self.vboxlayout1.setObjectName("vboxlayout1")
+
+        self.gridlayout = QtGui.QGridLayout()
+        self.gridlayout.setMargin(0)
+        self.gridlayout.setSpacing(6)
+        self.gridlayout.setObjectName("gridlayout")
+
+        self.label = QtGui.QLabel(self.tab)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setObjectName("label")
+        self.gridlayout.addWidget(self.label,0,0,1,1)
+
+        self.CB_Classes = QtGui.QComboBox(self.tab)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.CB_Classes.sizePolicy().hasHeightForWidth())
+        self.CB_Classes.setSizePolicy(sizePolicy)
+        self.CB_Classes.setObjectName("CB_Classes")
+        self.gridlayout.addWidget(self.CB_Classes,0,1,1,1)
+
+        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.gridlayout.addItem(spacerItem,0,2,1,1)
+
+        self.tableWidget = QtGui.QTableWidget(self.tab)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(7))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
+        self.tableWidget.setSizePolicy(sizePolicy)
+        self.tableWidget.setObjectName("tableWidget")
+        self.gridlayout.addWidget(self.tableWidget,1,0,1,3)
+        self.vboxlayout1.addLayout(self.gridlayout)
         self.tabWidget.addTab(self.tab,"")
 
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
+
+        self.vboxlayout2 = QtGui.QVBoxLayout(self.tab_2)
+        self.vboxlayout2.setMargin(9)
+        self.vboxlayout2.setSpacing(6)
+        self.vboxlayout2.setObjectName("vboxlayout2")
+
+        self.gridlayout1 = QtGui.QGridLayout()
+        self.gridlayout1.setMargin(0)
+        self.gridlayout1.setSpacing(6)
+        self.gridlayout1.setObjectName("gridlayout1")
+
+        self.L_Class = QtGui.QLabel(self.tab_2)
+        self.L_Class.setObjectName("L_Class")
+        self.gridlayout1.addWidget(self.L_Class,0,2,1,1)
+
+        self.label_2 = QtGui.QLabel(self.tab_2)
+        self.label_2.setObjectName("label_2")
+        self.gridlayout1.addWidget(self.label_2,0,0,1,1)
+
+        self.CB_Regattas = QtGui.QComboBox(self.tab_2)
+        self.CB_Regattas.setObjectName("CB_Regattas")
+        self.gridlayout1.addWidget(self.CB_Regattas,0,1,1,1)
+
+        spacerItem1 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem1,0,3,1,1)
+
+        self.tableWidget_2 = QtGui.QTableWidget(self.tab_2)
+        self.tableWidget_2.setObjectName("tableWidget_2")
+        self.gridlayout1.addWidget(self.tableWidget_2,1,0,1,4)
+        self.vboxlayout2.addLayout(self.gridlayout1)
         self.tabWidget.addTab(self.tab_2,"")
-        self.hboxlayout.addWidget(self.tabWidget)
+        self.vboxlayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -153,14 +202,21 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuExport.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "QtRanking", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Classes", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Regatta", None, QtGui.QApplication.UnicodeUTF8))
+        self.tableWidget.clear()
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("MainWindow", "General Ranking", None, QtGui.QApplication.UnicodeUTF8))
+        self.L_Class.setText(QtGui.QApplication.translate("MainWindow", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Regatta", None, QtGui.QApplication.UnicodeUTF8))
+        self.tableWidget_2.clear()
+        self.tableWidget_2.setColumnCount(0)
+        self.tableWidget_2.setRowCount(0)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("MainWindow", "Detail ranking", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuClasses.setTitle(QtGui.QApplication.translate("MainWindow", "Classes", None, QtGui.QApplication.UnicodeUTF8))

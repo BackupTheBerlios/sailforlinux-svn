@@ -3,12 +3,15 @@
 import os, re
 
 class QtRankingIO:
+    
+    Classes = []
+    Regattas = {}
     def __init__(self):
         pass
     
     def LoadData(self, gui):
         try:
-            classes = self.ReadClasses()
+            self.Classes = self.ReadClasses()
         except Exception, e:
             print e
         try:
@@ -18,13 +21,14 @@ class QtRankingIO:
             flist = os.listdir('./saved_data')
         gui.CB_Classes.clear()
         gui.CB_Regattas.clear()
-        gui.CB_Classes.addItems(classes)
+        gui.CB_Classes.addItems(self.Classes)
         for cl in flist:
             try:
                 p = cl.rindex('_') + 1
-                if cl[p:-4] in (classes):
+                if cl[p:-4] in (self.Classes):
                     Regatta = re.sub('_',' ',cl[:-4])
                     gui.CB_Regattas.addItem(Regatta)
+                    gui.L_Class.setText(cl[p:-4])
             except Exception, e:
                 print e
     
