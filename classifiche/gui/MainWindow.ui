@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>934</width>
-    <height>731</height>
+    <width>625</width>
+    <height>453</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -25,84 +25,9 @@
       <property name="currentIndex" >
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab" >
+      <widget class="QWidget" name="TAB_Ranking" >
        <attribute name="title" >
-        <string>General Ranking</string>
-       </attribute>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item>
-         <layout class="QGridLayout" >
-          <property name="margin" >
-           <number>0</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label" >
-            <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>0</hsizetype>
-              <vsizetype>5</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text" >
-             <string>Class</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="CB_Classes" >
-            <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>0</hsizetype>
-              <vsizetype>0</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="0" colspan="3" >
-           <widget class="QTableWidget" name="tableWidget" >
-            <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>5</hsizetype>
-              <vsizetype>7</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2" >
-       <attribute name="title" >
-        <string>Detail ranking</string>
+        <string>Ranking</string>
        </attribute>
        <layout class="QVBoxLayout" >
         <property name="margin" >
@@ -153,9 +78,140 @@
            <widget class="QComboBox" name="CB_Class" />
           </item>
           <item row="1" column="0" colspan="5" >
-           <widget class="QTableWidget" name="tableWidget_2" />
+           <widget class="QTableWidget" name="T_DetailRanking" >
+            <property name="editTriggers" >
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+           </widget>
           </item>
          </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="TAB_Configuration" >
+       <attribute name="title" >
+        <string>Configuration</string>
+       </attribute>
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="0" column="1" >
+         <widget class="QGroupBox" name="groupBox_2" >
+          <property name="title" >
+           <string>Regattas</string>
+          </property>
+          <layout class="QVBoxLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QListWidget" name="L_Regattas" />
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QGroupBox" name="groupBox_3" >
+          <property name="title" >
+           <string>Ranking</string>
+          </property>
+          <layout class="QGridLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label" >
+             <property name="text" >
+              <string>DNF value</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="label_3" >
+             <property name="text" >
+              <string>Discards</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="QLineEdit" name="E_DNF" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>0</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text" >
+              <string>20</string>
+             </property>
+             <property name="maxLength" >
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" >
+            <widget class="QSpinBox" name="SP_Discards" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>0</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximum" >
+              <number>10</number>
+             </property>
+             <property name="value" >
+              <number>1</number>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2" >
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0" >
+         <widget class="QGroupBox" name="groupBox" >
+          <property name="title" >
+           <string>Classes</string>
+          </property>
+          <layout class="QVBoxLayout" >
+           <property name="margin" >
+            <number>9</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QListWidget" name="L_Classes" />
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -168,57 +224,50 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>934</width>
+     <width>625</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuData" >
+    <property name="title" >
+     <string>Data</string>
+    </property>
+    <addaction name="actionExport" />
+    <addaction name="actionPrint" />
+   </widget>
    <widget class="QMenu" name="menuFile" >
     <property name="title" >
      <string>File</string>
     </property>
-    <addaction name="actionNew" />
-    <addaction name="actionOpen" />
-    <addaction name="actionSave" />
-    <addaction name="separator" />
     <addaction name="actionExit" />
    </widget>
    <widget class="QMenu" name="menuClasses" >
     <property name="title" >
      <string>Classes</string>
     </property>
-    <addaction name="actionAdd" />
-    <addaction name="actionDelete" />
+    <addaction name="actionAddClass" />
+    <addaction name="actionDeleteClass" />
    </widget>
    <widget class="QMenu" name="menuRegattas" >
     <property name="title" >
      <string>Regattas</string>
     </property>
-    <addaction name="actionAdd_2" />
-    <addaction name="actionDelete_2" />
+    <addaction name="actionAddRegatta" />
+    <addaction name="actionDeleteRegatta" />
    </widget>
    <widget class="QMenu" name="menuRanking" >
     <property name="title" >
      <string>Ranking</string>
     </property>
-    <addaction name="actionNew_2" />
-    <addaction name="actionEdit" />
-    <addaction name="actionDelete_3" />
-   </widget>
-   <widget class="QMenu" name="menuExport" >
-    <property name="title" >
-     <string>Export</string>
-    </property>
-    <addaction name="actionGeneral_Ranking" />
-    <addaction name="actionDetail_Ranking" />
-    <addaction name="separator" />
-    <addaction name="actionPrint_General_Ranking" />
-    <addaction name="actionPrint_Detail_Ranking" />
+    <addaction name="actionNewRanking" />
+    <addaction name="actionEditRanking" />
+    <addaction name="actionDeleteRanking" />
    </widget>
    <addaction name="menuFile" />
    <addaction name="menuClasses" />
    <addaction name="menuRegattas" />
    <addaction name="menuRanking" />
-   <addaction name="menuExport" />
+   <addaction name="menuData" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionOpen" >
@@ -241,49 +290,49 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionAdd" >
+  <action name="actionAddClass" >
    <property name="text" >
     <string>Add</string>
    </property>
   </action>
-  <action name="actionDelete" >
+  <action name="actionDeleteClass" >
    <property name="text" >
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionAdd_2" >
+  <action name="actionAddRegatta" >
    <property name="text" >
     <string>Add</string>
    </property>
   </action>
-  <action name="actionDelete_2" >
+  <action name="actionDeleteRegatta" >
    <property name="text" >
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionNew_2" >
+  <action name="actionNewRanking" >
    <property name="text" >
     <string>New</string>
    </property>
   </action>
-  <action name="actionEdit" >
+  <action name="actionEditRanking" >
    <property name="text" >
     <string>Edit</string>
    </property>
   </action>
-  <action name="actionDelete_3" >
+  <action name="actionDeleteRanking" >
    <property name="text" >
     <string>Delete</string>
    </property>
   </action>
   <action name="actionGeneral_Ranking" >
    <property name="text" >
-    <string>General Ranking</string>
+    <string>Export</string>
    </property>
   </action>
   <action name="actionDetail_Ranking" >
    <property name="text" >
-    <string>Detail Ranking</string>
+    <string>Print</string>
    </property>
   </action>
   <action name="actionPrint_General_Ranking" >
@@ -294,6 +343,16 @@
   <action name="actionPrint_Detail_Ranking" >
    <property name="text" >
     <string>Print Detail Ranking</string>
+   </property>
+  </action>
+  <action name="actionExport" >
+   <property name="text" >
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="actionPrint" >
+   <property name="text" >
+    <string>Print</string>
    </property>
   </action>
  </widget>

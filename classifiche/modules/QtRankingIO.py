@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, re, string
+import os, re, string, ConfigParser
 
 class QtRankingIO:
     
@@ -11,17 +11,12 @@ class QtRankingIO:
     
     def LoadData(self, gui):
         try:
-            self.Classes = self.ReadClasses()
-        except Exception, e:
-            print e
-        try:
             flist = os.listdir('./saved_data')
         except:
             os.mkdir(gui.inputpath)
             flist = os.listdir('./saved_data')
-        gui.CB_Classes.clear()
         gui.CB_Regattas.clear()
-        gui.CB_Classes.addItems(self.Classes)
+        gui.CB_Regattas.addItem('')
         for cl in flist:
             try:
                 p = cl.rindex('_') + 1
@@ -53,3 +48,14 @@ class QtRankingIO:
             FO.write(gui.CB_Classi.item(c).text())
             FO.write("\n")
         FO.close()
+
+        
+    def LoadRegattaRanking(self, data, rank):
+        res = {}
+        datafile = ConfigParser.ConfigParser()
+        datafile.readfp(open(data))
+        section_to_read = 'result_'+str(rank)
+        for sk in datafile.options(section_to_read):
+            res[sk] = datafile.get(section_to_read, sk).split(',')
+        return res
+            
