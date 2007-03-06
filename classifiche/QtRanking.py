@@ -18,8 +18,19 @@ class MainWindow(Ui_MainWindow):
     def __init__(self):
         pass
     
+    def FinalizeGui(self):
+        # Signal Connection
+        QtCore.QObject.connect(ui.CB_Classes, QtCore.SIGNAL("activated(int)"), self.LoadClassRanking)
+        QtCore.QObject.connect(ui.CB_Regattas, QtCore.SIGNAL("activated(int)"), self.LoadRegattaRanking)
 
-    
+    def LoadClassRanking(self):
+        print "Cambio classe"
+
+    def LoadRegattaRanking(self):
+        print ui.CB_Regattas.currentText()
+        #La funzione deve prendere i dati nell'header [info] , caricarli nel box delle classifiche e caricare la classifica giusta nella tabella
+
+        
 app = QtGui.QApplication(sys.argv)
 window = QtGui.QMainWindow()
 ui = MainWindow()
@@ -29,6 +40,6 @@ ui = MainWindow()
 ui.setupUi(window)  
 QtRankIO = QtRankingIO()
 QtRankIO.LoadData(ui)
-
+ui.FinalizeGui()
 window.show()
 sys.exit(app.exec_())

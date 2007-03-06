@@ -1,0 +1,34 @@
+[info]
+class=Libera
+class=FortyFive
+
+
+[ranking-Libera]
+pietro = 4
+sante = 1
+sergio = 5
+fortunato = 2
+massimiliano = 3
+
+[result-Libera]
+pietro = 5,3,4,3,5,7,7
+sante = 2,1,3,1,4,3,2
+sergio = 7,8,6,6,6,8,8
+fortunato = 4,5,1,4,1,6,5
+massimiliano = 3,4,5,5,2,5,3
+
+[ranking-FortyFive]
+fortunato = 3
+sergio = 4
+pietro = 2
+sante = 5
+gianluca = 6
+massimiliano = 1
+
+[result-FortyFive]
+fortunato = 2,3,4,3,5,1,6
+sergio = 3,5,5,4,4,2,3
+pietro = 5,4,3,2,3,4,2
+sante = 4,1,1,1,1,DNF,4
+gianluca = 6,6,6,6,DNF,DNF,5
+massimiliano = 1,2,2,5,2,3,1

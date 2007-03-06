@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'gui/MainWindow.ui'
+# Form implementation generated from reading ui file 'gui\MainWindow.ui'
 #
-# Created: Sun Mar  4 01:09:42 2007
+# Created: Tue Mar 06 13:50:27 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -87,31 +87,35 @@ class Ui_MainWindow(object):
         self.gridlayout1.setSpacing(6)
         self.gridlayout1.setObjectName("gridlayout1")
 
-        self.L_Class = QtGui.QLabel(self.tab_2)
-        self.L_Class.setObjectName("L_Class")
-        self.gridlayout1.addWidget(self.L_Class,0,2,1,1)
-
         self.label_2 = QtGui.QLabel(self.tab_2)
         self.label_2.setObjectName("label_2")
         self.gridlayout1.addWidget(self.label_2,0,0,1,1)
+
+        spacerItem1 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem1,0,4,1,1)
+
+        self.L_Class = QtGui.QLabel(self.tab_2)
+        self.L_Class.setObjectName("L_Class")
+        self.gridlayout1.addWidget(self.L_Class,0,2,1,1)
 
         self.CB_Regattas = QtGui.QComboBox(self.tab_2)
         self.CB_Regattas.setObjectName("CB_Regattas")
         self.gridlayout1.addWidget(self.CB_Regattas,0,1,1,1)
 
-        spacerItem1 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem1,0,3,1,1)
+        self.CB_Class = QtGui.QComboBox(self.tab_2)
+        self.CB_Class.setObjectName("CB_Class")
+        self.gridlayout1.addWidget(self.CB_Class,0,3,1,1)
 
         self.tableWidget_2 = QtGui.QTableWidget(self.tab_2)
         self.tableWidget_2.setObjectName("tableWidget_2")
-        self.gridlayout1.addWidget(self.tableWidget_2,1,0,1,4)
+        self.gridlayout1.addWidget(self.tableWidget_2,1,0,1,5)
         self.vboxlayout2.addLayout(self.gridlayout1)
         self.tabWidget.addTab(self.tab_2,"")
         self.vboxlayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,934,33))
+        self.menubar.setGeometry(QtCore.QRect(0,0,934,21))
         self.menubar.setObjectName("menubar")
 
         self.menuFile = QtGui.QMenu(self.menubar)
@@ -202,18 +206,18 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuExport.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "QtRanking", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("MainWindow", "Classes", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("MainWindow", "Class", None, QtGui.QApplication.UnicodeUTF8))
         self.tableWidget.clear()
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("MainWindow", "General Ranking", None, QtGui.QApplication.UnicodeUTF8))
-        self.L_Class.setText(QtGui.QApplication.translate("MainWindow", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Regatta", None, QtGui.QApplication.UnicodeUTF8))
+        self.L_Class.setText(QtGui.QApplication.translate("MainWindow", "Class", None, QtGui.QApplication.UnicodeUTF8))
         self.tableWidget_2.clear()
         self.tableWidget_2.setColumnCount(0)
         self.tableWidget_2.setRowCount(0)

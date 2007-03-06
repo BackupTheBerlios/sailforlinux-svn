@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, re
+import os, re, string
 
 class QtRankingIO:
     
@@ -25,10 +25,8 @@ class QtRankingIO:
         for cl in flist:
             try:
                 p = cl.rindex('_') + 1
-                if cl[p:-4] in (self.Classes):
-                    Regatta = re.sub('_',' ',cl[:-4])
-                    gui.CB_Regattas.addItem(Regatta)
-                    gui.L_Class.setText(cl[p:-4])
+                Regatta = re.sub('_',' ',cl[:-4])
+                gui.CB_Regattas.addItem(Regatta)
             except Exception, e:
                 print e
     

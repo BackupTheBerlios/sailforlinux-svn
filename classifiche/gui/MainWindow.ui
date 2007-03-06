@@ -23,7 +23,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget" >
       <property name="currentIndex" >
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab" >
        <attribute name="title" >
@@ -55,7 +55,7 @@
              </sizepolicy>
             </property>
             <property name="text" >
-             <string>Classes</string>
+             <string>Class</string>
             </property>
            </widget>
           </item>
@@ -119,13 +119,6 @@
           <property name="spacing" >
            <number>6</number>
           </property>
-          <item row="0" column="2" >
-           <widget class="QLabel" name="L_Class" >
-            <property name="text" >
-             <string>TextLabel</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0" >
            <widget class="QLabel" name="label_2" >
             <property name="text" >
@@ -133,10 +126,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="CB_Regattas" />
-          </item>
-          <item row="0" column="3" >
+          <item row="0" column="4" >
            <spacer>
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
@@ -149,7 +139,20 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="0" colspan="4" >
+          <item row="0" column="2" >
+           <widget class="QLabel" name="L_Class" >
+            <property name="text" >
+             <string>Class</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QComboBox" name="CB_Regattas" />
+          </item>
+          <item row="0" column="3" >
+           <widget class="QComboBox" name="CB_Class" />
+          </item>
+          <item row="1" column="0" colspan="5" >
            <widget class="QTableWidget" name="tableWidget_2" />
           </item>
          </layout>
@@ -166,7 +169,7 @@
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>33</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile" >
